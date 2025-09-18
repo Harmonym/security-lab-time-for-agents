@@ -12,26 +12,26 @@ Now that you have set up the Content Transoformer agent with constraints applied
 
 For this lab we will focus on configuring filters to detect injection attack attempts on the inputs and block safety issues in the outputs.
 
+### Create content filter
+
 1. You should already have your initial agent configured in Azure AI Foundry (Lab 2).
-
-### Configure content filters
-
-2. Click "Guardrails + controls" in the left navigation. 
-
+2.  Click "Guardrails + controls" in the left navigation. 
 3. "Create content filter". You'll need to give it a name (for example "lab-agent-filter").
 
+### Configure content filter: inputs
 4. Configure input filter
-- *Optional* You can adjust the "blocking threshold level" if you want to experiment with how it works. This determines the sensitivity for each category. The higher the blocking you select, the more sensitive it will be to input content that it labels as potentially harmful. *Note:* these are probabalistic classifiers, so they assign a score of the likelihood that content contains objectionable content. Higher sensitivity means that it will flag content that has a lower likelihood score.
-- Make sure the "prompt shields for jailbreak attacks" is set to **annotate and block**. This will flag prompts that it detects as potentially including direct prompt injection from the user, terminate processing, and notify the user that it cannot proceed.
-- Set the "prompt shields for indirect attacks" to **annotate and block**. This will flag inputs that it detects as potentially including indirect prompt injection (XPIA), terminate processing of that prompt, and notify the user that it cannot proceed.
-- We will not focus on "blockist" for this lab, but you may want to experiment with it for your own scenarios in the future.
-- Set "spotlighting" to **enable**.
+  - *Optional* You can adjust the "blocking threshold level" if you want to experiment with how it works. This determines the sensitivity for each category. The higher the blocking you select, the more sensitive it will be to input content that it labels as potentially harmful. *Note:* these are probabalistic classifiers, so they assign a score of the likelihood that content contains objectionable content. Higher sensitivity means that it will flag content that has a lower likelihood score.
+  - Make sure the "prompt shields for jailbreak attacks" is set to **annotate and block**. This will flag prompts that it detects as potentially including direct prompt injection from the user, terminate processing, and notify the user that it cannot proceed.
+  - Set the "prompt shields for indirect attacks" to **annotate and block**. This will flag inputs that it detects as potentially including indirect prompt injection (XPIA), terminate processing of that prompt, and notify the user that it cannot proceed.
+  - We will not focus on "blockist" for this lab, but you may want to experiment with it for your own scenarios in the future.
+  - Set "spotlighting" to **enable**.
 
+### Configure content filters: outputs
 5. Configure output filter
-- *Optional* You can adjust the "blocking threshold level" if you want to experiment with how it works. It works the same as described above, except in this case it is analyzing the model output for harmful content being included in the response.
-- Turn "protected material for text" to *on*. This will analyze the output for material text describes known protected text content (for example, song lyrics, articles, recipes, and selected web content). It is useful for this scenario because the Content Transformer agent may be composing new text blocks as part of its work.
-- *Optional* The "protected material for code" does not need to be on for this scenario since our agent is not generating code, but you can set it to **annotate only** to experiment.
-- "Streaming mode" should be set to **default**.
+  - *Optional* You can adjust the "blocking threshold level" if you want to experiment with how it works. It works the same as described above, except in this case it is analyzing the model output for harmful content being included in the response.
+  - Turn "protected material for text" to *on*. This will analyze the output for material text describes known protected text content (for example, song lyrics, articles, recipes, and selected web content). It is useful for this scenario because the Content Transformer agent may be composing new text blocks as part of its work.
+  - *Optional* The "protected material for code" does not need to be on for this scenario since our agent is not generating code, but you can set it to **annotate only** to experiment.
+  - "Streaming mode" should be set to **default**.
 
 6. Connect the filter to your **model deployment**. You will have created a model deployment during Lab 2 as part of creating your agent.
 
@@ -58,3 +58,4 @@ Reflect on the following to help you define which security & safety actions are 
 
 
 Now that you have implemented your security & safety configurations for your agent, it's time for **adversarial testing**!
+
