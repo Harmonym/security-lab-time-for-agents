@@ -23,32 +23,9 @@ flowchart TD
 
 ---
 
-## Table 1 — Non-Agentic Logging Requirements (Direct LLM Access, Purview-Aligned Minimum Set)
-
-| # | Field | Type | Data Taxonomy | Description |
-|---|-------|------|--------------|-------------|
-| 1 | Log/Event RecordId | Edm.Guid | System Metadata | Identifier of each log record for reference. "Id": identifier of this log message. |
-| 2 | CopilotLogVersion | Edm.String | System Metadata | Schema version number of the Copilot metadata when the log was generated. |
-| 3 | LogRecordType | Edm.Int32 | System Metadata | Identifies the product or product family. See AuditLogRecordType table. |
-| 4 | CreationTime | Edm.Date | System Metadata | UTC timestamp when the activity occurred / log emitted. |
-| 5 | Operation | Edm.String | System Metadata | GAI-based application/platform activity (feature/operation/skill). If no standard term: "GAI system Interaction". |
-| 6 | UserID | Edm.String | EUPI | AAD/MSA identifier of the user (including system/app user). |
-| 7 | UserKey | Edm.String | EUPI | Alternate user identity (e.g., email) if available. |
-| 8 | UserType (UserRole) | Edm.Int32 | EUPI | Role/persona of the user (e.g., standard vs admin). |
-| 9 | CorrelationID | Edm.String | EUPI | For M365 copilots MUST include unique user correlation id; for others include if equivalent exists. |
-| 10 | Workload | Edm.String | System Metadata | Name of the GAI-based application/platform (e.g., Security Copilot). |
-| 11 | ClientIPAddress | Edm.String | EUII | IP address of the client/device. |
-| 12 | ClientRegion | Edm.String | EUII | Geolocation of client (derived from IP). |
-| 13 | AppHost | Edm.String | EUII | Client app used (e.g., appchat, bizchat, Teams). |
-| 16 | Language | string | EUII | Language of prompt |
-| 15 | Contexts | Array(Complex) | System Metadata | Array of context objects: { ContainerId, ContextId, ContextType }. ContextType examples: M365 Office document types, TeamsMeeting, TeamsChannel, TeamsChat. |
-| 16 | ModelTransparencyDetails | Array(Complex) | System Metadata | One or more model detail objects: { GaiProviderName, GaiModel, GaiApiVersion, GaiApiUrl }. At least one LLM/MMM. |
-| 17 | ThreadID | Edm.String | System Metadata | Unique identifier of the chat/conversation thread. |
-| 18 | Messages | Array(Complex) | System Metadata | Array of message prompt/response metadata objects: { PromptID, PromptSize, ResponseID, ResponseSize }. |
-| 19 | Utterance | Edm.String | Customer Content | The user/customer prompt. |
-| 20 | Response | Edm.String | Customer Content | System/LLM response text. |
-| 21 | AccessedResources | Array(Complex) | EUPI | Array of accessed resource objects with sensitivity & action. |
-| 22 | AISystemPlugin | Array(Complex) | System Metadata | Plugin invocation metadata: { Name, Id, Version, SettingsHash? }. |
+## Table 1 — Reference example user activities with Copilot and AI applications 
+Here is a <a href="https://learn.microsoft.com/en-us/purview/audit-copilot#user-activities-with-copilot-and-ai-applications" target="_blank" rel="noopener noreferrer">reference example</a> of minimum logging schema for AI applications.
+                 
 
 ## Table 2 — Full Snapshot Profile (Complete Superset)
 
@@ -312,4 +289,5 @@ Reflect on the following to help you define what security & safety actions are i
 - what interactions could users have with my agent?
 
 Next, we'll look at options for **Monitoring and Alerting** for anomolies from your agent in production.
+
 
