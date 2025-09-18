@@ -1,4 +1,4 @@
-## Introduction to Security Development Lifecycle (SDL) guidane for your pair programmer
+## Introduction to Security Development Lifecycle (SDL) guidance for your pair programmer
 
 ### Using a pair-programmer or AI assistance for your development work
 
@@ -80,3 +80,4 @@ Reflect on the following to help you define what security actions are important 
 
 
 With that set up, we will start **building** our agent!
+
