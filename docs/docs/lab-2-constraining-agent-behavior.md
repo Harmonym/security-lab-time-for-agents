@@ -96,9 +96,20 @@ Once you are happy with the system message, you can move on the steps for settin
 
 2. Click on "Agents" in the left navigation.
 
-3. "Create new". You will be prompted to first select a model type. *Recommended configurations:*
+3. "Create new". You will be prompted to first select a model type.
+
+   *Requirements*
+   You will need:
+   - An Azure Subscription and Resource Group.
+   - 
+   - To name your deployment. For this lab, you can call it "agentlabdeploy"
+   - Deployment type, select "Standard"
+   - Connected
+     
+  
+   *Recommended configurations*
   - set the name to "devdayssecuritylab"
-  - for model, select XXXXX
+  - for model, select **GPT4o**
   - knowledge - option to upload a branded presenation template to test with
   - actions - not needed
   - model settings - set temperature to xxxx, and top P to yyyyy
@@ -118,3 +129,4 @@ Reflect on the following to help you define what security actions are important 
 
 
 Now that we have the system instructions set, let's add some layers of **safety toolsing**.
+
