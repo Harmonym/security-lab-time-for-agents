@@ -1,6 +1,6 @@
-## Introduction
+## Introduction to security-oriented system messages
 
-No that you have your pair programmer set up, we can get started with building our example "Content Transformer agent". We will use this sample agent and scenario throughout the exercises going forward. Let's get started building.
+Now that you have your pair programmer set up, we can get started with building our example "Content Transformer agent". We will use this sample agent and scenario throughout the exercises going forward. Let's get started building.
 
 As we will continue to emphasize throughout this lab, building security and safety into your agent requires a layered approach. Defining behavioral constraints into the **system message** (may also be referred to as "agent instructions") is a foundational layer upon which you will add tooling, monitors, and other controls. 
 
@@ -129,4 +129,5 @@ Reflect on the following to help you define what security actions are important 
 
 
 Now that we have the system instructions set, let's add some layers of **safety toolsing**.
+
 
