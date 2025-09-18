@@ -1,21 +1,20 @@
-site_name: Build your code-first agent with Azure AI Foundry
-repo_name: Build your code-first agent with Azure AI Foundry
-repo_url: https://github.com/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop
+site_name: Building security and safety into your agent
+repo_name: Building security and safety into your agent
+repo_url: https://github.com/microsoft/lab-time-for-agents ## needs to be updated
 
 nav:
   - Introduction: index.md
-  - Solution Architecture: architecture.md
-  - Security Considerations: security.md
+  - Meed the agent: meet-the-agent.md
+  - Top AI threats: ai-threats.md
   - Getting Started: getting-started.md
   # - Workshop Setup:
   #   - BUILD Attendees: introduction-event.md
   #   - Self-Guided Learners: introduction-self-guided.md
-  - Lab 1 Function Calling Power: lab-1-function_calling.md
-  - Lab 2 Grounding with Documents: lab-2-file_search.md
-  - Lab 3 Intro to the Code Interpreter: lab-3-code_interpreter.md
-  # - Lab 4 Grounding with Bing Search: lab-4-bing_search.md
-  - Lab 4 Multilingual Visualizations: lab-5-multilingual.md
-  - Lab 5 Finishing Up: finishing-up.md
+  - Lab 1 SDL for pair-programming: lab-1-sdl-instructions.md
+  - Lab 2 Constraining agent behavior: lab-2-constraints.md
+  - Lab 3 Applying safety systems: lab-3-safety-systems.md
+  - Lab 4 Testing: lab-4-testing.md
+  - Lab 5 Logging: lab-5-logging.md
   - Summary: summary.md
   - Resources: resources.md
   # - Deployment: deployment.md
@@ -83,3 +82,4 @@ extra_css:
 # mkdocs.yml
 extra_javascript:
   - js/custom-nav.js
+
