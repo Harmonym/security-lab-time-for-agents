@@ -14,12 +14,12 @@ For this lab, the focus is on providing you a reference schema with guidance for
 
 ## Logging Table Decision Guide
 
-::: mermaid
+```mermaid
 flowchart TD
-	A[Start: AI Usage] --> B{Does the interaction involve an agent?}
-    B -- No --> E[Use Table 1: Non-Agentic Logging]
-	B -- Yes --> C[Use Table 2: Unified Agentic Logging]
-:::
+  A[Start: AI Usage] --> B{Does the interaction involve an agent?}
+  B -- No --> E[Use Table 1: Non-Agentic Logging]
+  B -- Yes --> C[Use Table 2: Unified Agentic Logging]
+```
 
 ---
 
@@ -121,7 +121,7 @@ Explicit listing of ToolSpan-specific fields within Full Snapshot profile.
 
 Diagram Narrative: Intake classifies the inbound request; a trivial/fully stateless path can return immediately. For stateful handling the agent creates a local task (submitted → working). At each decision loop the orchestrator selects one of: invoke a local tool (tool subgraph), delegate to another agent (delegation subgraph), obtain user clarification or authorization (input_required / auth-required subgraph), or finalize. Delegation creates a remote task; remote updates stream back and are merged (Apply Delegate / Tool Result) before re-entering the decision gateway. Input/auth loops block progress while preserving working context, accumulating blocking dwell metrics (BlockingSince / BlockingIterations). Tool and delegation paths are orthogonal—tools may continue to run after a delegation has started. Finalization composes artifacts, sets terminal state (completed / failed / canceled / rejected / unknown) and returns the response.
 
-::: mermaid
+```mermaid
 flowchart TD
     subgraph ORIG[Originator]
         OREQ[Request User/Service/Agent]
@@ -179,7 +179,8 @@ flowchart TD
     class AINT,ARDEC,ATOOL,ATOOLRES,ASUBTASK,AWORK,AUPDATE,BDELEG,BRESULT,INREQ,AUTHREQ stateful
     class ATERM terminal
     class DECIDE decision
-:::
+```
+---
 
 #### Task State Progression (RemoteAgent B exemplar)
 | Phase | Spec State | Meaning | Stateful? | Notes |
@@ -223,7 +224,7 @@ Decision tree merges routing, task orchestration, conditional tool use, delegati
 
 Key Goals: earliest stateless exit, conditional tool usage before/after task creation, delegation orthogonal choice, explicit blocking loops, clear telemetry emission points.
 
-::: mermaid
+```mermaid
 flowchart TD
     REQ[Incoming Request] --> CLASS[Normalize / Classify]
     CLASS --> AUTH{Authenticated?}
@@ -252,17 +253,18 @@ flowchart TD
     TOOL1 --> EVAL
     RUPD --> EVAL
     EVAL -- Input --> INREQ[Set state=input_required] --> COLLECT[Collect Input - HITL / Automated] --> WORK
-:::
+```
+---
 
 ### Repository References
 | Resource | Location |
 |----------|----------|
-| Semantic Conventions (OpenTelemetry) | https://github.com/open-telemetry/semantic-conventions |
-| Agent logging & tracing (OpenTelemetry) | https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/ |
-| Azure AI Inference (OpenTelemetry) | https://opentelemetry.io/docs/specs/semconv/gen-ai/azure-ai-inference/ |
-| A2A Protocol repository | https://github.com/a2aproject/A2A |
-| A2A Samples repository | https://github.com/a2aproject/a2a-samples |
-| A2A Protocol docs site | https://google.github.io/A2A/ |
+| Semantic Conventions (OpenTelemetry) | <a href="https://github.com/open-telemetry/semantic-conventions" target="_blank" rel="noopener noreferrer">https://github.com/open-telemetry/semantic-conventions</a> |
+| Agent logging & tracing (OpenTelemetry) | <a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/" target="_blank" rel="noopener noreferrer">https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/</a> |
+| Azure AI Inference (OpenTelemetry) | <a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/azure-ai-inference/" target="_blank" rel="noopener noreferrer">https://opentelemetry.io/docs/specs/semconv/gen-ai/azure-ai-inference/</a> |
+| A2A Protocol repository | <a href="https://github.com/a2aproject/A2A" target="_blank" rel="noopener noreferrer">https://github.com/a2aproject/A2A</a> |
+| A2A Samples repository | <a href="https://github.com/a2aproject/a2a-samples" target="_blank" rel="noopener noreferrer">https://github.com/a2aproject/a2a-samples</a> |
+| A2A Protocol docs site | <a href="https://google.github.io/A2A/" target="_blank" rel="noopener noreferrer">https://google.github.io/A2A/</a> |
 
 ## Glossary
 
