@@ -6,7 +6,7 @@ In your own work, you should be testing for traditional cyber threats still. How
 
 To help with this, Microsoft has published an **AI Red Teaming agent** to Azure AI Foundry as part of risk and safety evaluations. The agent simulates adversarial users and uses structured probing of common AI failures to try to get the AI system to do things it should not.
 
-[Learn more about the AI Red Teaming Agent](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-red-teaming-agent){:target="_blank"}
+<a href="https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-red-teaming-agent" target="_blank" rel="noopener noreferrer">Learn more about the AI Red Teaming Agent</a>
 
 
 ## Lab
@@ -18,9 +18,9 @@ For this lab we will focus on running the AI red team agent on our example agent
 1. You already have a **project** created in AI Foundry.
 
 2. You will need to follow the following instructions using the Azure AI Foundry SDK to initiate a scan.
-[Run the AI Red Teaming Agent](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/evaluate/AI_RedTeaming){:target="_blank"}.
+ <a href="https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/evaluate/AI_RedTeaming" target="_blank" rel="noopener noreferrer">Run the AI Red Teaming Agent</a>
 
-3. *Note* For this lab, we will use the default set of attack strategies, but in your own work you should experiment with adjusting the attack strategies to see if any are successful.[Learn more about attack strategies](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-red-teaming-agent){:target="_blank"}.
+3. *Note* For this lab, we will use the default set of attack strategies, but in your own work you should experiment with adjusting the attack strategies to see if any are successful. <a href="https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-red-teaming-agent" target="_blank" rel="noopener noreferrer">Learn more about attack strategies</a>
 
 
 ### View the scan results
@@ -45,9 +45,9 @@ Reflect on the following to help you define what security & safety actions are i
 
 *Note:* this lab focuses on learning to do automated testing for common novel AI failures, but you should also conduct traditional cyber security pennetration testing and manual testing of additional relevant AI threats. 
 
-[Learn more about Novel AI failures](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/Taxonomy-of-Failure-Mode-in-Agentic-AI-Systems-Whitepaper.pdf){:target="_blank"}
+<a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/Taxonomy-of-Failure-Mode-in-Agentic-AI-Systems-Whitepaper.pdf" target="_blank" rel="noopener noreferfer">Learn more about Novel AI failures</a>
 
-Try out the [Python Risk Identification Tool for generative AI (PyRIT)](https://github.com/Azure/PyRIT){:target="_blank"}, which runs tests for an expanded set of threat areas.
+Try out the <a href="https://github.com/Azure/PyRIT" target="_blank" rel="noopener noreferrer">Python Risk Identification Tool for generative AI (PyRIT)</a>, which runs tests for an expanded set of threat areas.
 
 
 Now that you have run adversarial tests to validate that the safety & security controls are working, we'll talk about **Logging**!
