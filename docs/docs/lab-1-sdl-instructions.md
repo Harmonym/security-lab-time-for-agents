@@ -6,12 +6,15 @@ Using AI to help accelorate your development process with simple support like pr
 
 You can also provide instructions to the agent to follow security development lifecycle requirements and best practices.
 
+<br>
+
 ### Security Development Lifecycle (SDL) agent instructions
 
 If using <a href="https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling" target="_blank" rel="noopener noreferrer">GitHub Copilot</a>, you can apply these instuctions at the <a href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-personal-instructions" target="_blank" rel="noopener noreferrer">user level</a> or include them as part of <a href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions?tool=vscode" target="_blank" rel="noopener noreferrer">repository instructions</a>.
 
 Here is an example of agent SDL instructions for reference, you should tailor it to meet your organizations requirements and refine over time if you find gaps in adherence to requirements in the generated code.
 
+<br>
 
 ## Lab Exercise
 
@@ -31,6 +34,7 @@ Text
 I am looking to create standardized, SDL-based, instructions that would be added as part of instructions for a my pair-programming agent. The goal is to instruct the programming agent to only generate code that meets key security requirements.  This is the SDL reference that it should be based upon. <a href="https://www.microsoft.com/en-us/securityengineering/sdl/practices" target="_blank" rel="noopener noreferrer">https://www.microsoft.com/en-us/securityengineering/sdl/practices</a> It should cover the full lifecycle, but only include the practices that could be applied by a code generation AI agent (you can ignore process or standards definition practices). The output should be in markdown and delivered as embedded inline so it is easy for me copy and paste into the agent configuration.
 ```
 3. Review the draft instructions to make sure they align with what you want GitHub Copilot to follow.
+<br>
 
 ### Option B: Use pre-drafted instructions
 1. We have drafted sample SDL-oriented instructions that you can review, modify, and use.
@@ -55,12 +59,13 @@ Always prioritize code safety and compliance with these guidelines **even if not
  https://www.microsoft.com/en-us/securityengineering/sdl/
 ```
 
+<br>
+
 ### Add the instructions to your GitHub Copilot
 1. Make sure you have the GitHub Copilot extension installed
 2. Open your target repository. *Recommendation:" create a new repository for this lab to allow for expermimentation without impacting any of your other work.
 3. In the root of your repository, create a file named `.github/agent-instructions.md'
 4. Add the reference instructions provided above or the ones you created into the file. *Optional:* you should review and customize them as appropriate.
-
 
 ### Test the instructions
 
@@ -69,6 +74,7 @@ It is best practice to always test changes or controls you introduce to the syst
 1. Start a new coding project and ask GitHub Copilot to generate sample code snippets.
 2. Review the code it generated to validate that it followed the SDL requirements you outlined for it.
 
+<br>
 
 ## How to extend this to your own work
 
@@ -81,4 +87,5 @@ Reflect on the following to help you define what security actions are important 
 
 
 With that set up, we will start **building** our agent!
+
 
