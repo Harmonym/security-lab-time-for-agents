@@ -2,7 +2,7 @@
 
 We will not do this step as part of this lab, but before we deploy the Content Transfomer agent for use in production, logging needs to be implemented to ensure that we have the records of actions taken by the agent and user interactions with the agent. This is a key element of security & compliance for any system because it provides an auditable record that can either demonstrate adherence or help with an invesetigation if something goes wrong.
 
-Microsoft Purview offers audit logging for AI and Copilot [Learn more](https://learn.microsoft.com/en-us/purview/audit-copilot){:target="_blank"} or you can implement your own audit logging approach.
+Microsoft Purview offers <a href="https://learn.microsoft.com/en-us/purview/audit-copilot" target="_blank" rel="noopener noreferrer">audit logging for AI and Copilot</a> or you can implement your own audit logging approach.
 
 ## Lab
 
@@ -312,3 +312,4 @@ Reflect on the following to help you define what security & safety actions are i
 - what interactions could users have with my agent?
 
 Next, we'll look at options for **Monitoring and Alerting** for anomolies from your agent in production.
+
