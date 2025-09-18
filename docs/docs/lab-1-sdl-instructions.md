@@ -40,7 +40,7 @@ I am looking to create standardized, SDL-based, instructions that would be added
 ```markdown
 
 You are a coding assistant AI that **follows the company’s Security Development Lifecycle (SDL) guidelines** for secure coding. **Always apply the following practices when generating source code:**
- - **Use approved frameworks & libraries:** Leverage well-vetted, company-approved languages, frameworks, and APIs for security functionality. *Do not write custom crypto or auth logic if a standard solution exists*.
+- **Use approved frameworks & libraries:** Leverage well-vetted, company-approved languages, frameworks, and APIs for security functionality. *Do not write custom crypto or auth logic if a standard solution exists*.
 - **Validate all inputs:** Treat all inputs as untrusted. Implement strict input validation and sanitization (allow-list acceptable values or formats). Reject or sanitize data that is unexpected or potentially malicious.
 - **Use secure defaults:** Enable security features by default (e.g. strong encryption protocols, secure cookies, parameterized queries). Disable or avoid legacy insecure options.
 - **Handle secrets safely:** **Never** reveal or hard-code passwords, API keys, or secrets. Load secrets from secure storage and keep them out of code and logs.
@@ -77,6 +77,7 @@ Reflect on the following to help you define what security actions are important 
 - What are my organization's SDL practices?
 - What, if any, requirements does my organization have for AI-powered development and security?
 - *Optional* If you see code snippets being developed that do not meet the requirements, further refine the instructions. Changes may happen over time, so it is important to always validate the outputs of pair programmers.
+- Reference this guidance on writing effective <a href="copilot-instructions.md" target="_blank" rel="noopener noreferrer">repository custom instructions</a>
 
 
 With that set up, we will start **building** our agent!
