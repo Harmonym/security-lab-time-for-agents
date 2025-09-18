@@ -3,9 +3,9 @@
 Now that you have your pair programmer set up, we can get started with building our example "Content Transformer agent". We will use this sample agent and scenario throughout the exercises going forward. Let's get started building.
 
 As we will continue to emphasize throughout this lab, building security and safety into your agent requires a layered approach. Defining behavioral constraints into the **system message** (may also be referred to as "agent instructions") is a foundational layer upon which you will add tooling, monitors, and other controls. 
+<br><br>
 
-
-### System messages
+## System messages
 A system message is a key tool you can use to define the purpose of your agent, assign detailed rules about what it should and should not do, provide valuable context, and assign safety & security guidelines that should be followed. Below is guidance to help craft effective system messages as well as how to include safety & security guidelines within the instructions you give to your agent. 
 
 <a href="https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/system-message?tabs=top-techniques#summary-of-best-practices" target="_blank" rel="noopener noreferrer">Learn about the anatomy of system instructions</a>
@@ -13,8 +13,9 @@ A system message is a key tool you can use to define the purpose of your agent, 
 <a href="https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/declarative-agent-instructions" target="_blank" rel="noopener noreferrer">Guidance on crafting effecive instructions for declarative agents</a>
 
 <a href="https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/safety-system-message-templates" target="_blank" rel="noopener noreferrer">Reference templates for safety system instructions</a>
+<br> <br>
 
-**Content transformer agent system messages (so far)**
+### Content transformer agent system messages (so far)
 To facilitate this exercise, we have pre-crafted the initial system message for our sample agent. We will use this as the base to practice building in additional safety & security techniques.
 
 ```
@@ -48,6 +49,7 @@ Maintain fidelity to the source content while optimizing for the strengths of th
 
 *Important note:* system messages are interpreted by the model as part of processing requests, so while they are necessary and important, they do not operate the same as defined rules within a deterministic system. The agent may not behave exactly as you outline or expect. Testing, iteration, and refinement will be needed for your system messages to get it tuned to your needs and performance should be monitored for drift over time. 
 
+<br>
 
 ## Lab Exercise
 
@@ -60,10 +62,15 @@ Maintain fidelity to the source content while optimizing for the strengths of th
    
 For this lab we will focus specifically on defining boundaries for what the agent can do with a goal of reducing the potential that the agent introduces security issues.
 
-### Create security-oriented system message 
-1. Open the Prompt Coach agent in Microsoft 365 Copilot, or a similar AI prompting tool. 
+<br>
 
-2. **Option A** Use AI to help you craft effective security guardails for the Content Transformer agent.
+### Create security-oriented system message 
+1. Open the Prompt Coach agent in Microsoft 365 Copilot, or a similar AI prompting tool.
+2. Draft system message.
+
+<br>
+
+**Option A** Use AI to help you craft effective security guardails for the Content Transformer agent.
   - Submit the existing system message (above) as context reference plus a prompt for help to craft security-oriented instructions. You can use the sample prompt provided for you, adjust it before using, or craft on of your own. 
 **Sample prompt** 
 ```markdown
@@ -73,7 +80,9 @@ https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/safety-system
 ```
   - Review the outputs. Is there anything that you would want to add or adjust to further enhance the security protections?
 
-**Sample instructions**
+<br>
+
+### Sample instructions
 The following sample instructions was generated iteravely using the example prompt above.
 
 ```markdown
@@ -84,6 +93,8 @@ Security and Safety Requirements:
 - If the source document contains potentially sensitive or ambiguous content, ask the user for clarification before proceeding.
 - Ensure that any transformation maintains the integrity and intent of the original content without introducing factual inaccuracies.
 ```
+
+<br>
 
 **Option B** Craft your own security-oriented system message. this suggested prompt or craft one of your own. Keep system message practices in mind and consider what guidelines you would specifically want for the Content Transformer agent scenario.
 
@@ -118,6 +129,7 @@ Once you are happy with the system message, you can move on the steps for settin
 
 5. "Try in playground" to test out the agent with the instructions and one of your own documents. **Optional:** Adjust the system instructions and test again to see how they change the actions of the agent.
 
+<br>
 
 ## How to extend this to your own work
 
@@ -129,5 +141,6 @@ Reflect on the following to help you define what security actions are important 
 
 
 Now that we have the system instructions set, let's add some layers of **safety toolsing**.
+
 
 
