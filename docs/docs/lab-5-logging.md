@@ -1,8 +1,10 @@
-## Introduction
+## Introduction to logging
 
-We will not do this step as part of this lab, but before we deploy the Content Transfomer agent for use in production, logging needs to be implemented to ensure that we have the records of actions taken by the agent and user interactions with the agent. This is a key element of security & compliance for any system because it provides an auditable record that can either demonstrate adherence or help with an invesetigation if something goes wrong.
+We will not do this step as part of this lab, but before we deploy the SparkMate agent for use in production, logging needs to be implemented to ensure that we have the records of actions taken by the agent and user interactions with the agent. This is a key element of security & compliance for any system because it provides an auditable record that can either demonstrate adherence or help with an invesetigation if something goes wrong.
 
 Microsoft Purview offers <a href="https://learn.microsoft.com/en-us/purview/audit-copilot" target="_blank" rel="noopener noreferrer">audit logging for AI and Copilot</a> or you can implement your own audit logging approach.
+
+<br>
 
 ## Lab
 
@@ -10,7 +12,9 @@ Microsoft Purview offers <a href="https://learn.microsoft.com/en-us/purview/audi
 
 For this lab, the focus is on providing you a reference schema with guidance for implementing for your own solution. *Use the decision tree below to determine which table is most relevant to your scenario*
 
-1. Review the schema options and determine what would be appicable to the Content Transformer agent.
+1. Review the schema options and determine what would be appicable to the SparkMate agent.
+
+<br>
 
 ## Logging Table Decision Guide
 
@@ -23,9 +27,12 @@ flowchart TD
 
 ---
 
+<br>
+
 ## Table 1 — Reference example user activities with Copilot and AI applications 
 Here is a <a href="https://learn.microsoft.com/en-us/purview/audit-copilot#user-activities-with-copilot-and-ai-applications" target="_blank" rel="noopener noreferrer">reference example</a> of minimum logging schema for AI applications.
-                 
+
+<br>
 
 ## Table 2 — Full Snapshot Profile (Complete Superset)
 
@@ -76,6 +83,8 @@ Here is a <a href="https://learn.microsoft.com/en-us/purview/audit-copilot#user-
 
 ToolSpan & InferenceSpan sub-structures (when SpanType=ToolSpan or InferenceSpan) inherit the same requirements as in Table 2A; additional future snapshot fields (e.g. ToolParameters) apply at both span and snapshot record levels when available.
 
+<br>
+
 ### Table 2.1 — ToolSpan Fields (Full Snapshot)
 Explicit listing of ToolSpan-specific fields within Full Snapshot profile.
 
@@ -93,6 +102,8 @@ Explicit listing of ToolSpan-specific fields within Full Snapshot profile.
 | ToolDocstring     | string | MAY | Planned | Tool docstring/description digest | gen_ai.tool.doc_string |
 
 ---
+
+<br>
 
 ## Agentic Flow Delegated Task Lifecycle (Single Agent, A2A, Tool Invocation)
 
@@ -159,6 +170,8 @@ flowchart TD
 ```
 ---
 
+<br>
+
 #### Task State Progression (RemoteAgent B exemplar)
 | Phase | Spec State | Meaning | Stateful? | Notes |
 |-------|------------|---------|-----------|-------|
@@ -172,6 +185,8 @@ flowchart TD
 | 4d | rejected | Policy / validation refusal | Yes (terminal) | No execution |
 | 4e | unknown | Indeterminate final | Yes (terminal) | Recovery gap |
 
+<br>
+
 #### Human-in-the-loop (HITL) Clarification Patterns
 | Pattern | Purpose / Trigger | Example Representation |
 |---------|-------------------|------------------------|
@@ -181,6 +196,8 @@ flowchart TD
 | Missing resource | Required artifact not yet provided | status_metadata: { reason: "artifact", expected_format: "csv" } |
 | Downstream wait | Awaiting remote/tool fan-in | status_metadata: { reason: "dependency" } |
 | Cancellation | User/system abort leading to terminal state=canceled | status_metadata: { reason: "cancellation", actor: "user", at_state: "input_required" } |
+
+<br>
 
 #### Stateful vs. Stateless Flows
 | Flow Segment | Stateful? | Rationale |
@@ -194,6 +211,8 @@ flowchart TD
 | Terminal States | Yes | Immutable lifecycle end |
 
 ---
+
+<br>
 
 ## Agentic Flow Delegated Task Lifecycle (Comprehensive Action Paths)
 
@@ -233,6 +252,8 @@ flowchart TD
 ```
 ---
 
+<br>
+
 ### Repository References
 | Resource | Location |
 |----------|----------|
@@ -242,6 +263,8 @@ flowchart TD
 | A2A Protocol repository | <a href="https://github.com/a2aproject/A2A" target="_blank" rel="noopener noreferrer">https://github.com/a2aproject/A2A</a> |
 | A2A Samples repository | <a href="https://github.com/a2aproject/a2a-samples" target="_blank" rel="noopener noreferrer">https://github.com/a2aproject/a2a-samples</a> |
 | A2A Protocol docs site | <a href="https://google.github.io/A2A/" target="_blank" rel="noopener noreferrer">https://google.github.io/A2A/</a> |
+
+<br>
 
 ## Glossary
 
@@ -279,6 +302,7 @@ flowchart TD
 - Error: Normalized error typing plus raw detail (if emitted separately elsewhere).
 - Derived: Computed metrics/values inferred from transitions or aggregations.
 
+<br>
 
 ## How to extend this to your own work
 
@@ -289,5 +313,6 @@ Reflect on the following to help you define what security & safety actions are i
 - what interactions could users have with my agent?
 
 Next, we'll look at options for **Monitoring and Alerting** for anomolies from your agent in production.
+
 
 
