@@ -103,7 +103,7 @@ Once you are happy with the system message, you can move on the steps for settin
 
 ### Set up the agent
 
-1. Open Azure AI Foundry <a href="https://ai.azure.com/" target="_blank" rel="noopener noreferrer">https://ai.azure.com/"</a>
+1. Open Azure AI Foundry <a href="https://ai.azure.com/" target="_blank" rel="noopener noreferrer">https://ai.azure.com/</a>
 
 2. Click on "Agents" in the left navigation.
 
@@ -141,6 +141,7 @@ Reflect on the following to help you define what security actions are important 
 
 
 Now that we have the system instructions set, let's add some layers of **safety toolsing**.
+
 
 
 
