@@ -1,4 +1,4 @@
-## Introduction
+## Introduction to Human in the Loop (HITL)
 
 ### Context - generativeAI makes mistakes
 
@@ -11,12 +11,19 @@ There are a variety of common causes for AI errors:
 - it can ommit key information
 - it can form unexpected preferences
 
+<br>
+
+Make sure you are well-versed in the <a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/Taxonomy-of-Failure-Mode-in-Agentic-AI-Systems-Whitepaper.pdf" target="_blank" rel="noopener noreferrer">novel ways AI mistakes can manifest</a>. 
+
+<br>
 
 ### Countering AI mistakes with people-power
 
 There is tooling available to help address some error types (for example, automated checks for groundedness for outputs to ensure they are based upon reliable source data). Some AI system architecture includes additional AI-powered mitigations such as "critic agents" to try to simulate human oversight. However these are also based upon probabalistic capabilities and carry the potential for errors.
 
 To help address this, humans are still often relied upon to oversee and intervene when AI systems err as part the overall safety controls. This is model is generally referred to as **"Human in-the-Loop" (HITL)**. This is an entire area of study and emerging technique development, but within this lab we fill focus on a couple of key areas.
+
+<br>
 
 ## Inappropriate reliance
 
@@ -27,13 +34,17 @@ There are several contributing factors to the overreliance threat:
 - **inability to effectively verify the AI output** many AI systems are designed more for efficient completion of work than with humans needing to oversee and cross-check the system's work in mind.
 - **speed and scale of automated AI workflows** with the increased ability for autonomous agents to complete complext workflows quickly at scale, it is even more difficult, if not impossible, for humans to check all of the work for errors.
 
-[Learn more about inapproprate reliance on AI](https://www.microsoft.com/en-us/research/publication/overreliance-on-ai-literature-review/){:target="_blank"}
+<a href="https://www.microsoft.com/en-us/research/publication/overreliance-on-ai-literature-review/" target="_blank" rel="noopener noreferrer">Learn more about inapproprate reliance on AI</a>
 
-With these factors in mind, and with acknowledgment that inappriprate reliance is not a solved problem, delivering interfaces that provide users with the ability to understand what the system did, why it took the actions it did, to verify that the outputs are grounded (based upon reliable data sources), and they have a mechanism to reject/correct it is critical to establishing appropriate reliance.
+With these factors in mind, and with acknowledgment that inappriprate reliance is not a solved problem, delivering interfaces that provide users with the ability to understand what the system did, why it took the actions it did, to verify that the outputs are grounded (based upon reliable data sources), and they have a mechanism to reject/correct it is critical to establishing appropriate reliance. 
+
+<br>
 
 ### User Experience (UX) overrelaince identification and framework
 
 Microsoft UX for AI researchers and experts have developed a framework understanding the inappropriate reliance potential and impact for your specific AI system and learning how to better establish appropriate reliance by users.
+
+<br>
 
 **Understanding the inappropriate reliance potential and impact** centers around defining:
 - the types of mistakes your AI system could potentially make
@@ -45,8 +56,9 @@ Microsoft UX for AI researchers and experts have developed a framework understan
 - signal to users when to verify
 - facilitate verification
 
-[Use the overreliance framework in your interaction designs](https://learn.microsoft.com/en-us/ai/playbook/technology-guidance/overreliance-on-ai/overreliance-on-ai) {:target="_blank"}
+<a href="https://learn.microsoft.com/en-us/ai/playbook/technology-guidance/overreliance-on-ai/overreliance-on-ai" target="_blank" rel="noopener noreferrer">Use the overreliance framework in your interaction designs</a>
 
+<br>
 
 ## Agent shut-down mechansisms
 
@@ -56,7 +68,9 @@ Effectively implementing this requires that the AI system has:
 - interrupt points available at all key points in the flow
 - system-level shutdown mechanisms are implemented (orchestration layer, tool hand-off, and sytem logic enforcement)
 - "stop" controls are embedded in the UX
-- shut-down events are logged 
+- shut-down events are logged
+
+<br>
 
 ### Reference shut-down event logging schema**
 
@@ -113,39 +127,33 @@ This table outlines key fields used for logging and tracking activities in a sys
 | TaskStatus       | `string` | Task/message status (completed, failed, working) |
 | ResponseContent  | `string` | Final response text                |
 
- 
+<br> 
 
 ## Lab (optional)
 
+<br>
+
 ### Apply the inapproriate reliance framework
 
-1. Apply the overreliance framework to the Content Transformer agent. What elements would need to be present within the interface to foster appropriate reliance?
+1. Apply the overreliance framework to the SparkMate agent. What elements would need to be present within the interface to foster appropriate reliance?
 
-2. If you do not, review the Microsoft Defender for Cloud AI alerts and define which ones would be relevant for the Content Transformer agent.
+2. If you do not, review the Microsoft Defender for Cloud AI alerts and define which ones would be relevant for the SparkMate agent.
+
+<br>
 
 ### Design shut-down options
 
-3. Define the appropriate shut-down mechanism for the Content Transformer agent. What are the critical stop points in the flow?
+3. Define the appropriate shut-down mechanism for the SparkMate agent. What are the critical stop points in the flow?
 
-4. Define the shut-down logging requirements for the Content Transformer agent.
+4. Define the shut-down logging requirements for the SparkMate agent.
 
-
-
-
-### Optional: learn more about Microsoft Defender for Cloud
-
-3. Watch an overview and demo [video](https://www.youtube.com/live/qHi27tD73pI?feature=shared){:target="_blank"}
-
+<br>
 
 ## How to extend this to your own work
 
 Reflect on the following to help you define what security & safety actions are important for your agent.
 
-- What types of attackers would you envision wanting to target this system? 
-- What would they be hoping to achieve or access?
-- How might they try to manipulate your agent to get it to do things it shouldn't?
-
-[Learn about the tools available for helping with discovery of AI applications](https://learn.microsoft.com/en-us/security/security-for-ai/discover){:target="_blank"}
-
-
-Now that you have run adversarial tests to validate that the safety & security controls are working, we'll talk about **Logging**!
+- What expectations do you have about users overseeing your agent?
+- What would your uers need in order to be able to spot a mistake while it is running?
+- What would your users need to stop and revert mistakes that are in progress?
+- What would your uers need in order to be able to spot a mistake in the response?
