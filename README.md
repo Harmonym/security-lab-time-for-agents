@@ -22,22 +22,26 @@ Implement Security Development Lifecycle principles in your agent’s instructio
 
 ### Lab 2: Behavior Constraints _(15 min)_
 Build system messages to define agent boundaries.
-- **Location**: [`labs/02-behavior-constraints/`](labs/02-behavior-constraints/)
+- **Location**: [`labs/02-constraints/`](labs/02-constraints/)
 
 ### Lab 3: Microsoft Safety System Tools _(15 min)_
 Integrate Prompt Shield, Spotlighting, and Task Adherence.
-- **Location**: [`labs/03-safety-system-tools/`](labs/03-safety-system-tools/)
+- **Location**: [`labs/03-safety-systems/`](labs/03-safety-systems/)
 
 ### Lab 4: Red Team Testing _(15 min)_
 Test your agent’s security using adversarial techniques.
-- **Location**: [`labs/04-red-team-testing/`](labs/04-red-team-testing/)
+- **Location**: [`labs/04-testing/`](labs/04-testing/)
 
 ### Lab 5: Logging & Monitoring _(15 min)_
 Implement logging and basic monitoring for your agents.
-- **Location**: [`labs/05-logging-monitoring/`](labs/05-logging-monitoring/)
+- **Location**: [`labs/05-logging/`](labs/05-logging/)
+
+### Lab 6: Minotiring & Alerting _(15 min)_
+Implement logging and basic monitoring for your agents.
+- **Location**: [`labs/06-monitoring-alerting/`](labs/06-monitoring-alerting/)
 
 > _Optional Extension: Human-in-the-loop (HITL) Design_(15 min)_
-> - See [`labs/06-human-in-the-loop/`](labs/06-human-in-the-loop/) for further exploration after the workshop.
+> - See [`labs/07-hitl/`](labs/07-hitl/) for further exploration after the workshop.
 
 ## 🚀 Quick Start
 
@@ -62,7 +66,7 @@ Implement logging and basic monitoring for your agents.
 
 ## 📖 Additional Resources
 
-- [Microsoft Responsible AI](https://www.microsoft.com/en-us/ai/responsible-ai)
+- [Security for AI]([https://www.microsoft.com/en-us/ai/responsible-ai](https://learn.microsoft.com/en-us/security/security-for-ai/))
 - [OWASP AI Security](https://owasp.org/www-project-ai-security-and-privacy-guide/)
 - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 
