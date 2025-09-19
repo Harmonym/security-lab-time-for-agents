@@ -1,33 +1,30 @@
 # Summary
 
-This workshop demonstrated how to leverage the Foundry Agent Service to create a robust conversational agent capable of answering sales-related questions, performing data analysis, generating visualizations, and integrating external data sources for enhanced insights. Here are the key takeaways:
+Congratulations for completing the lab! The goal of this workshop was to give you a chance to learn and practice how to build layered security & safety controls for agents. You should now be able to start experimenting with industry best practice techniques and tools on your own agent projects.
 
-## 1. Function Calling and Dynamic SQL Queries
+## Lab Index
 
-- The agent uses the Foundry Agent Service to dynamically generate and execute SQL queries against a read-only SQLite database, enabling it to respond to user questions with accurate data retrieval.
+- **Lab 1: SDL Instructions**  
+  Learn how to set up Security Development Lifecycle (SDL) guidance for your AI pair programmer, including authoring and applying secure coding instructions to Copilot and agents at the repository level.
 
-## 2. Context Management
+- **Lab 2: Constraints**  
+  Define security-oriented system messages and behavioral constraints for your agent to reduce risk, craft strong safety-focused instructions, and configure your agent in Azure AI Foundry.
 
-- The agent efficiently manages conversation context using the Foundry Agent Service, ensuring interactions remain relevant and coherent.
+- **Lab 3: Safety Systems**  
+  Implement layered security controls for your agent, including prompt shields, spotlighting, and content filters to detect adversarial attacks and block unsafe outputs.
 
-## 3. Data Visualization
+- **Lab 4: Testing**  
+  Use automated AI Red Teaming agents to adversarially test and evaluate your agent's resilience to novel threats and ensure established safety mechanisms are effective.
 
-- With the Code Interpreter, the agent can generate visualizations such as pie charts and tables based on user queries, making data more accessible and actionable. You can attach additional fonts to the Code Interpreter to create visualizations that support multiple languages.
+- **Lab 5: Logging**  
+  Explore observability and logging requirements for agents, referencing schema options and OpenTelemetry conventions to capture actions, events, and compliance.
 
-## 4. File Generation
+- **Lab 6: Monitoring & Alerting**  
+  Integrate post-deployment monitoring and alerting solutions, such as Microsoft Defender for Cloud, to detect anomalies, breaches, and security indicators specific to AI agents.
 
-- The agent can create downloadable files, including Excel, CSV, JSON, and image formats, providing users with flexible options to analyze and share data.
+- **Optional Lab 7: Human in the Loop (HITL)**  
+  Address the risks of inappropriate user reliance on AI, apply frameworks to foster appropriate trust, and design agent shut-down mechanisms and logging for critical interventions.
 
-## 6. Security Best Practices
+---
 
-- Security risks, such as SQL injection, are mitigated by enforcing read-only database access and running the app within a secure environment.
-
-## 7. Multi-Language Support
-
-- The agent and LLM support multiple languages, offering an inclusive experience for users from diverse linguistic backgrounds.
-
-## 8. Adaptability and Customization
-
-- The workshop emphasizes the flexibility of the Foundry Agent Service, allowing you to adapt the agent for various use cases, such as customer support or competitive analysis, by modifying instructions and integrating additional tools.
-
-This workshop equips you with the knowledge and tools to build and extend conversational agents tailored to your business needs, leveraging the full capabilities of the Foundry Agent Service.
+Just as generativeAI is a rapidly evolving technology space, so too are the threats and methods for protecting against them. Keep engaging with the security for AI community to continue your learning.
