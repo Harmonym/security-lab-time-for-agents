@@ -13,6 +13,7 @@ The workshop repository on GitHub contains everything needed for the workshop. T
 
 ## Learn resources
 
+* The <a href="https://learn.microsoft.com/security/security-for-ai/">Security for AI collection</a> in MS Learn
 * Adding <a href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-personal-instructions" target="_blank" rel="noopener noreferrer">SDL instructions</a> to your GitHub Copilot
 * <a href="https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-red-teaming-agent" target="_blank" rel="noopener noreferrer"> Attack strategies</a>
 * <a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/Taxonomy-of-Failure-Mode-in-Agentic-AI-Systems-Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Novel AI failure taxonomy</a>
@@ -52,5 +53,6 @@ The workshop repository on GitHub contains everything needed for the workshop. T
 ## Thank you
 
 Thank you for participating in this workshop! If you have any suggestions for improvements or encountered any problems while running this workshop, please let us know via <a href="https://github.com/Harmonym/lab-time-for-agents/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>
+
 
 
