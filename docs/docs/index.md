@@ -1,8 +1,8 @@
-# Build your code-first agent with Azure AI Foundry
+# Agentic Safety for AI builders
 
-## A 75-minute interactive workshop
+## A 120-minute learning session and interactive workshop
 
-Imagine you are a sales manager at Contoso, a multinational retail company that sells outdoor equipment. You need to analyze sales data to find trends, understand customer preferences, and make informed business decisions. To help you, Contoso has developed a conversational agent that can answer questions about your sales data.
+Imagine you are an AI builder. You need to analyze sales data to find trends, understand customer preferences, and make informed business decisions. To help you, Contoso has developed a conversational agent that can answer questions about your sales data.
 
 ![Contoso Sales Analysis Agent](media/persona.png)
 
@@ -42,3 +42,4 @@ Learn more about the Foundry Agent Service in the [Foundry Agent Service documen
 ## AI Agent Frameworks
 
 Popular agent frameworks include LangChain, Semantic Kernel, and CrewAI. What distinguishes the Foundry Agent Service is its seamless integration capabilities and an SDK optimized for rapid deployment. In complex multi-agent scenarios, solutions will combine SDKs like Semantic Kernel and AutoGen with the Foundry Agent Service to build robust and scalable systems.
+
