@@ -1,4 +1,3 @@
-````markdown name=README.md
 # Build-an-Agent Labs: Safety & Security Workshop
 
 A hands-on, interactive 2-hour workshop for AI builders to implement essential safety and security techniques into custom agents. This workshop covers core security practices, Microsoft Safety System tools, and practical agent defense tactics.
@@ -18,7 +17,7 @@ By the end of this workshop, you will be able to:
 
 ### Lab 1: SDL-Oriented Instructions _(05 min)_
 Implement Security Development Lifecycle principles in your agent’s instructions.
-- **Location**: [`labs/01-sdl-instructions/`](labs/01-sdl-instructions/)
+- **Location**: [`docs/lab-01-sdl-instructions/`](docs/lab-01-sdl-instructions/)
 
 ### Lab 2: Behavior Constraints _(15 min)_
 Build system messages to define agent boundaries.
@@ -66,7 +65,7 @@ Implement logging and basic monitoring for your agents.
 
 ## 📖 Additional Resources
 
-- [Security for AI]([https://www.microsoft.com/en-us/ai/responsible-ai](https://learn.microsoft.com/en-us/security/security-for-ai/))
+- [Security for AI](https://www.microsoft.com/en-us/ai/responsible-ai](https://learn.microsoft.com/en-us/security/security-for-ai/))
 - [OWASP AI Security](https://owasp.org/www-project-ai-security-and-privacy-guide/)
 - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 
