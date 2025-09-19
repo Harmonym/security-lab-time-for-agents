@@ -1,100 +1,64 @@
-# Build-an-Agent Labs: Safety & Security Edition
+````markdown name=README.md
+# Build-an-Agent Labs: Safety & Security Workshop
 
-A comprehensive hands-on lab series for AI builders to implement safety and security techniques into custom agents. This lab covers essential security practices, Microsoft Safety System tools, and real-world testing methodologies.
+A hands-on, interactive 2-hour workshop for AI builders to implement essential safety and security techniques into custom agents. This workshop covers core security practices, Microsoft Safety System tools, and practical agent defense tactics.
 
 ## 🎯 Learning Objectives
 
-By completing these this session, you will learn to:
-- Understand the top novel AI threats
-- Apply Security Development Lifecycle (SDL) principles to AI agent development
-- Implement effective behavior constraints 
-- Integrate Microsoft safety system tools (prompt shield, spotlighting, task adherence)
-- Test your agents using the AI red team agent
-- Implement comprehensive logging, monitoring, and alerting systems
-- Design for appropriate reliance & human-in-the-loop (HITL)
+By the end of this workshop, you will be able to:
+- Recognize top AI threats in agent development
+- Apply Security Development Lifecycle (SDL) principles
+- Implement effective behavior constraints
+- Integrate Microsoft safety system tools (Prompt Shield, Spotlighting, Task Adherence)
+- Test agents with adversarial (red team) techniques
+- Set up logging and monitoring for agent observability
+- Design for appropriate reliance
 
-## 📚 Lab Structure
+## 📚 Workshop Structure
 
-### Lab 1: SDL-Oriented Instructions
-Learn to implement Security Development Lifecycle principles in your AI agent instructions.
-- **Location**: `labs/01-sdl-instructions/`
-- **Duration**: 45 minutes
-- **Prerequisites**: Basic understanding of AI agents
+### Lab 1: SDL-Oriented Instructions _(05 min)_
+Implement Security Development Lifecycle principles in your agent’s instructions.
+- **Location**: [`labs/01-sdl-instructions/`](labs/01-sdl-instructions/)
 
-### Lab 2: Behavior Constraints 
-Build effective system messages.
-- **Location**: `labs/02-behavior-constraints/`
-- **Duration**: 60 minutes
-- **Prerequisites**: Completion of Lab 1
+### Lab 2: Behavior Constraints _(15 min)_
+Build system messages to define agent boundaries.
+- **Location**: [`labs/02-behavior-constraints/`](labs/02-behavior-constraints/)
 
-### Lab 3: Microsoft Safety System Tools
-Integrate prompt shield, spotlighting, and task adherence tools.
-- **Location**: `labs/03-safety-system-tools/`
-- **Duration**: 75 minutes
-- **Prerequisites**: Azure subscription with access to Azure AI services & AI Foundry
+### Lab 3: Microsoft Safety System Tools _(15 min)_
+Integrate Prompt Shield, Spotlighting, and Task Adherence.
+- **Location**: [`labs/03-safety-system-tools/`](labs/03-safety-system-tools/)
 
-### Lab 4: Red Team Testing
-Test your agent's security using adversarial techniques.
-- **Location**: `labs/04-red-team-testing/`
-- **Duration**: 90 minutes
-- **Prerequisites**: Completion of Labs 1-3
+### Lab 4: Red Team Testing _(15 min)_
+Test your agent’s security using adversarial techniques.
+- **Location**: [`labs/04-red-team-testing/`](labs/04-red-team-testing/)
 
-### Lab 5: Logging 
-Implement comprehensive observability for your agents.
-- **Location**: `labs/05-logging-monitoring/`
-- **Duration**: 60 minutes
-- **Prerequisites**: Basic knowledge of logging systems
+### Lab 5: Logging & Monitoring _(15 min)_
+Implement logging and basic monitoring for your agents.
+- **Location**: [`labs/05-logging-monitoring/`](labs/05-logging-monitoring/)
 
-### Lab 6: Monitoring & alerting 
-Implement anomaly detection for your agents.
-- **Location**: `labs/05-logging-monitoring/`
-- **Duration**: 60 minutes
-- **Prerequisites**: Basic knowledge of logging systems
-
-### (Optional) Lab 7: Human-in-the-loop
-Implement anomaly detection for your agents.
-- **Location**: `labs/05-logging-monitoring/`
-- **Duration**: 60 minutes
-- **Prerequisites**: Basic knowledge of logging systems
+> _Optional Extension: Human-in-the-loop (HITL) Design_(15 min)_
+> - See [`labs/06-human-in-the-loop/`](labs/06-human-in-the-loop/) for further exploration after the workshop.
 
 ## 🚀 Quick Start
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Harmonym/build-a-agent-labs.git
-   cd build-a-agent-labs
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Set up environment variables**:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your API keys and configuration
-   ```
-
-4. **Start with Lab 1**:
-   ```bash
-   cd labs/01-sdl-instructions
-   python setup.py
+   git clone https://github.com/Harmonym/lab-time-for-agents.git
+   cd lab-time-for-agents
    ```
 
 ## 📋 Prerequisites
 
 - Python 3.8 or higher
 - Basic understanding of AI/ML concepts
-- Azure account (for Microsoft Safety System tools)
-- OpenAI API key (for examples)
+- Azure subscription (for Microsoft Safety System tools)
 
 ## 🔧 Tools & Technologies
 
-- **AI Frameworks**: LangChain, Semantic Kernel
-- **Safety Tools**: Microsoft Prompt Shield, Azure Content Safety
-- **Monitoring**: Azure Monitor, Application Insights
-- **Testing**: Custom red team scripts, OWASP AI security guidelines
+- **AI building platform**: Microsoft AI Foundry
+- **Safety tools**: Microsoft Prompt Shield, Azure Content Safety
+- **Monitoring**: Microsoft Defender for Cloud
+- **Testing**: AI Red Team agent
 
 ## 📖 Additional Resources
 
@@ -109,3 +73,4 @@ Please see our [contributing guidelines](CONTRIBUTING.md) for information on how
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+````
