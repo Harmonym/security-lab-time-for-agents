@@ -28,3 +28,15 @@ Congratulations for completing the lab! The goal of this workshop was to give yo
 ---
 
 Just as generativeAI is a rapidly evolving technology space, so too are the threats and methods for protecting against them. Keep engaging with the security for AI community to continue your learning.
+
+<br>
+
+# Star the GitHub Repository
+If you have a GitHub account, you can "star" this repository to make it easy for you to find again in the future.
+
+- Visit the GitHub repository at: [VVVVVVVVV}
+- Log into your GitHub account
+- Click Star in the top right
+  
+To find this workshop again in the future, click your GitHub profile picture in the top-right and click Your stars.
+
