@@ -16,7 +16,7 @@ nav:
   - Lab 4 Testing: lab-4-testing.md
   - Lab 5 Logging: lab-5-logging.md
   - Lab 6 Monitoring & alerting: lab-6-monitoring-alerting.md
-  - Lab 7 Human in the loop (optional: optional-labl-7-hitl
+  - Lab 7 Human in the loop (optional): optional-labl-7-hitl
   - Summary: summary.md
   - Resources: resources.md
   # - Deployment: deployment.md
@@ -84,5 +84,6 @@ extra_css:
 # mkdocs.yml
 extra_javascript:
   - js/custom-nav.js
+
 
 
