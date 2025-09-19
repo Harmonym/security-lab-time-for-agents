@@ -40,7 +40,7 @@ With these factors in mind, and with acknowledgment that inappriprate reliance i
 
 <br>
 
-### User Experience (UX) overrelaince identification and framework
+### User Experience (UX) overreliance identification and framework
 
 Microsoft UX for AI researchers and experts have developed a framework understanding the inappropriate reliance potential and impact for your specific AI system and learning how to better establish appropriate reliance by users.
 
@@ -72,7 +72,7 @@ Effectively implementing this requires that the AI system has:
 
 <br>
 
-### Reference shut-down event logging schema**
+### Reference shut-down event logging schema
 
 In addition to the logging we have already discussed, it is important to have logging in place for shut-down events. This can provide important signal around scenarios where the agent is making mistakes or causing users to be concerned enough to intervene. This should be used as part of ongoing improvement for the agent as well as signal for detecting or understanding critical failures.
 
@@ -157,3 +157,4 @@ Reflect on the following to help you define what security & safety actions are i
 - What would your uers need in order to be able to spot a mistake while it is running?
 - What would your users need to stop and revert mistakes that are in progress?
 - What would your uers need in order to be able to spot a mistake in the response?
+
