@@ -4,12 +4,14 @@ A comprehensive hands-on lab series for AI builders to implement safety and secu
 
 ## 🎯 Learning Objectives
 
-By completing these labs, you will learn to:
+By completing these this session, you will learn to:
+- Understand the top novel AI threats
 - Apply Security Development Lifecycle (SDL) principles to AI agent development
-- Implement effective behavior constraints and Human-in-the-Loop (HITL) patterns
-- Integrate Microsoft Safety System tools (prompt shield, spotlighting, task adherence)
-- Test your agents using AI red team methodologies
+- Implement effective behavior constraints 
+- Integrate Microsoft safety system tools (prompt shield, spotlighting, task adherence)
+- Test your agents using the AI red team agent
 - Implement comprehensive logging, monitoring, and alerting systems
+- Design for appropriate reliance & human-in-the-loop (HITL)
 
 ## 📚 Lab Structure
 
@@ -19,8 +21,8 @@ Learn to implement Security Development Lifecycle principles in your AI agent in
 - **Duration**: 45 minutes
 - **Prerequisites**: Basic understanding of AI agents
 
-### Lab 2: Behavior Constraints & HITL
-Build effective guardrails and human oversight mechanisms.
+### Lab 2: Behavior Constraints 
+Build effective system messages.
 - **Location**: `labs/02-behavior-constraints/`
 - **Duration**: 60 minutes
 - **Prerequisites**: Completion of Lab 1
@@ -29,7 +31,7 @@ Build effective guardrails and human oversight mechanisms.
 Integrate prompt shield, spotlighting, and task adherence tools.
 - **Location**: `labs/03-safety-system-tools/`
 - **Duration**: 75 minutes
-- **Prerequisites**: Azure account with Cognitive Services access
+- **Prerequisites**: Azure subscription with access to Azure AI services & AI Foundry
 
 ### Lab 4: Red Team Testing
 Test your agent's security using adversarial techniques.
@@ -37,8 +39,20 @@ Test your agent's security using adversarial techniques.
 - **Duration**: 90 minutes
 - **Prerequisites**: Completion of Labs 1-3
 
-### Lab 5: Logging, Monitoring & Alerting
+### Lab 5: Logging 
 Implement comprehensive observability for your agents.
+- **Location**: `labs/05-logging-monitoring/`
+- **Duration**: 60 minutes
+- **Prerequisites**: Basic knowledge of logging systems
+
+### Lab 6: Monitoring & alerting 
+Implement anomaly detection for your agents.
+- **Location**: `labs/05-logging-monitoring/`
+- **Duration**: 60 minutes
+- **Prerequisites**: Basic knowledge of logging systems
+
+### (Optional) Lab 7: Human-in-the-loop
+Implement anomaly detection for your agents.
 - **Location**: `labs/05-logging-monitoring/`
 - **Duration**: 60 minutes
 - **Prerequisites**: Basic knowledge of logging systems
