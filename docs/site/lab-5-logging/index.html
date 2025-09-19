@@ -1,0 +1,1735 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../lab-4-testing/">
+      
+      
+        <link rel="next" href="../lab-6-monitoring-alerting/">
+      
+      
+      <link rel="icon" href="../media/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Lab 5 Logging - Building security and safety into your agent</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-logging" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Building security and safety into your agent" class="md-header__button md-logo" aria-label="Building security and safety into your agent" data-md-component="logo">
+      
+  <img src="../media/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Building security and safety into your agent
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 5 Logging
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="pink" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/lab-time-for-agents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Building security and safety into your agent
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Building security and safety into your agent" class="md-nav__button md-logo" aria-label="Building security and safety into your agent" data-md-component="logo">
+      
+  <img src="../media/favicon.png" alt="logo">
+
+    </a>
+    Building security and safety into your agent
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/lab-time-for-agents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Building security and safety into your agent
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meet-the-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Meed the agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai-threats.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Top AI threats
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-1-sdl-instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 1 SDL for pair-programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-2-constraints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 2 Constraining agent behavior
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-3-safety-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 3 Applying safety systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-4-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 4 Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lab 5 Logging
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 5 Logging
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction to logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-table-decision-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging Table Decision Guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-1-reference-example-user-activities-with-copilot-and-ai-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table 1 — Reference example user activities with Copilot and AI applications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-2-full-snapshot-profile-complete-superset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table 2 — Full Snapshot Profile (Complete Superset)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentic-flow-delegated-task-lifecycle-single-agent-a2a-tool-invocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agentic Flow Delegated Task Lifecycle (Single Agent, A2A, Tool Invocation)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flowchart-td-subgraph-origoriginator-oreqrequest-userserviceagent-end-subgraph-aclientagent-a-aintintake-routing-ardecinitial-routing-asmstateless-message-local-response-asubtaskcreate-local-task-a1-statesubmitted-aworkworking-aupdateapply-delegate-tool-result-atermfinalize-terminal-subgraph-tooltool-execution-atoolinvoke-tool-atoolrestool-result-end-subgraph-delegatedelegation-bdelegdelegate-create-remote-task-subgraph-remotedelegated-task-bresultdelegate-task-result-terminalpartial-end-end-subgraph-inputauthinput-auth-handling-inreqinput_required-authreqauth-required-end-decidenext-action-end-oreq-aint-ardec-ardec-stateless-asm-orespreturn-response-ardec-start-task-asubtask-awork-decide-ardec-tool-atool-atoolres-awork-decide-ardec-delegate-bdeleg-bresult-aupdate-awork-decide-decide-tool-atool-decide-delegate-bdeleg-decide-input-inreq-awork-decide-auth-authreq-awork-decide-finalize-aterm-orespreturn-response-bdeleg-delegate-update-bresult-aupdate-awork-aupdate-decide-classdef-stateless-filleefstroke447stroke-width1pxcolor000-classdef-stateful-fillefestroke484stroke-width1pxcolor000-classdef-terminal-fillfccstrokea00stroke-width1pxcolor000-classdef-decision-fillf9f9f9stroke555stroke-width1pxcolor000-class-asm-stateless-class-aintardecatoolatoolresasubtaskaworkaupdatebdelegbresultinreqauthreq-stateful-class-aterm-terminal-class-decide-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      flowchart TD subgraph ORIG[Originator] OREQ[Request User/Service/Agent] end subgraph A[ClientAgent A] AINT[Intake / Routing] ARDEC{Initial Routing} ASM[Stateless Message - Local Response] ASUBTASK[Create Local Task A₁ state=submitted] AWORK[Working] AUPDATE[Apply Delegate / Tool Result] ATERM[Finalize / Terminal] subgraph TOOL[Tool Execution] ATOOL[Invoke Tool] ATOOLRES[Tool Result] end subgraph DELEGATE[Delegation] BDELEG[Delegate: Create Remote Task] subgraph REMOTE[Delegated Task] BRESULT[Delegate Task Result terminal/partial] end end subgraph INPUTAUTH[Input / Auth Handling] INREQ[input_required] AUTHREQ[auth-required] end DECIDE{Next Action?} end OREQ --&gt; AINT --&gt; ARDEC ARDEC --&gt;|Stateless| ASM --&gt; ORESP[Return Response] ARDEC --&gt;|Start Task| ASUBTASK --&gt; AWORK --&gt; DECIDE ARDEC --&gt;|Tool| ATOOL --&gt; ATOOLRES --&gt; AWORK --&gt; DECIDE ARDEC --&gt;|Delegate| BDELEG --&gt; BRESULT --&gt; AUPDATE --&gt; AWORK --&gt; DECIDE DECIDE --&gt;|Tool| ATOOL DECIDE --&gt;|Delegate| BDELEG DECIDE --&gt;|Input| INREQ --&gt; AWORK DECIDE --&gt;|Auth| AUTHREQ --&gt; AWORK DECIDE --&gt;|Finalize| ATERM --&gt; ORESP[Return Response] BDELEG --&gt;|Delegate Update| BRESULT --&gt; AUPDATE --&gt; AWORK AUPDATE --&gt; DECIDE classDef stateless fill:#eef,stroke:#447,stroke-width:1px,color:#000 classDef stateful fill:#efe,stroke:#484,stroke-width:1px,color:#000 classDef terminal fill:#fcc,stroke:#a00,stroke-width:1px,color:#000 classDef decision fill:#f9f9f9,stroke:#555,stroke-width:1px,color:#000 class ASM stateless class AINT,ARDEC,ATOOL,ATOOLRES,ASUBTASK,AWORK,AUPDATE,BDELEG,BRESULT,INREQ,AUTHREQ stateful class ATERM terminal class DECIDE decision
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentic-flow-delegated-task-lifecycle-comprehensive-action-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agentic Flow Delegated Task Lifecycle (Comprehensive Action Paths)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flowchart-td-reqincoming-request-classnormalize-classify-class-authauthenticated-auth-no-denyreject-unauthorized-end-auth-yes-trivtrivial-stateless-triv-yes-genllm-generate-stateless-resp0return-response-fup0follow-up-fup0-yes-req-fup0-no-end-triv-no-needtaskneeds-persistence-multi-step-needtask-no-pretoolneed-tool-pretool-no-gen2llm-reasoning-only-resp0-pretool-yes-tool1invoke-tool-or-tools-gen2-needtask-yes-createcreate-task-statesubmitted-workset-stateworking-work-decidenext-action-decide-tool-tool2invoke-tool-updateupdate-task-decide-delegate-delegdelegate-to-remote-agent-decide-reason-reasoninternal-reasoning-decide-finalize-readyready-to-finalize-deleg-waitawait-remote-events-wait-rupdapply-remote-update-rupd-update-wait-timeout-errtotimeout-handling-update-evalinput-or-auth-needed-reason-eval-tool2-eval-tool1-eval-rupd-eval-eval-input-inreqset-stateinput_required-collectcollect-input-hitl-automated-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      flowchart TD REQ[Incoming Request] --&gt; CLASS[Normalize / Classify] CLASS --&gt; AUTH{Authenticated?} AUTH -- No --&gt; DENY[Reject - unauthorized] --&gt; END AUTH -- Yes --&gt; TRIV{Trivial / Stateless?} TRIV -- Yes --&gt; GEN[LLM Generate - Stateless] --&gt; RESP0[Return Response] --&gt; FUP0{Follow-up?} FUP0 -- Yes --&gt; REQ FUP0 -- No --&gt; END TRIV -- No --&gt; NEEDTASK{Needs Persistence / Multi-step?} NEEDTASK -- No --&gt; PRETOOL{Need Tool?} PRETOOL -- No --&gt; GEN2[LLM Reasoning Only] --&gt; RESP0 PRETOOL -- Yes --&gt; TOOL1[Invoke Tool or Tools] --&gt; GEN2 NEEDTASK -- Yes --&gt; CREATE[Create Task state=submitted] --&gt; WORK[Set state=working] WORK --&gt; DECIDE{Next Action} DECIDE --&gt;|Tool| TOOL2[Invoke Tool] --&gt; UPDATE[Update Task] DECIDE --&gt;|Delegate| DELEG[Delegate to Remote Agent] DECIDE --&gt;|Reason| REASON[Internal Reasoning] DECIDE --&gt;|Finalize?| READY{Ready to Finalize?} DELEG --&gt; WAIT[Await Remote Events] WAIT --&gt; RUPD[Apply Remote Update] RUPD --&gt; UPDATE WAIT -- Timeout --&gt; ERRTO[Timeout Handling] UPDATE --&gt; EVAL{Input or Auth Needed?} REASON --&gt; EVAL TOOL2 --&gt; EVAL TOOL1 --&gt; EVAL RUPD --&gt; EVAL EVAL -- Input --&gt; INREQ[Set state=input_required] --&gt; COLLECT[Collect Input - HITL / Automated] --&gt; WORK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glossary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-extend-this-to-your-own-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to extend this to your own work
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-6-monitoring-alerting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 6 Monitoring &amp; alerting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optional-labl-7-hitl" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 7 Human in the loop (optional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction to logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-table-decision-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging Table Decision Guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-1-reference-example-user-activities-with-copilot-and-ai-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table 1 — Reference example user activities with Copilot and AI applications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-2-full-snapshot-profile-complete-superset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table 2 — Full Snapshot Profile (Complete Superset)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentic-flow-delegated-task-lifecycle-single-agent-a2a-tool-invocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agentic Flow Delegated Task Lifecycle (Single Agent, A2A, Tool Invocation)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flowchart-td-subgraph-origoriginator-oreqrequest-userserviceagent-end-subgraph-aclientagent-a-aintintake-routing-ardecinitial-routing-asmstateless-message-local-response-asubtaskcreate-local-task-a1-statesubmitted-aworkworking-aupdateapply-delegate-tool-result-atermfinalize-terminal-subgraph-tooltool-execution-atoolinvoke-tool-atoolrestool-result-end-subgraph-delegatedelegation-bdelegdelegate-create-remote-task-subgraph-remotedelegated-task-bresultdelegate-task-result-terminalpartial-end-end-subgraph-inputauthinput-auth-handling-inreqinput_required-authreqauth-required-end-decidenext-action-end-oreq-aint-ardec-ardec-stateless-asm-orespreturn-response-ardec-start-task-asubtask-awork-decide-ardec-tool-atool-atoolres-awork-decide-ardec-delegate-bdeleg-bresult-aupdate-awork-decide-decide-tool-atool-decide-delegate-bdeleg-decide-input-inreq-awork-decide-auth-authreq-awork-decide-finalize-aterm-orespreturn-response-bdeleg-delegate-update-bresult-aupdate-awork-aupdate-decide-classdef-stateless-filleefstroke447stroke-width1pxcolor000-classdef-stateful-fillefestroke484stroke-width1pxcolor000-classdef-terminal-fillfccstrokea00stroke-width1pxcolor000-classdef-decision-fillf9f9f9stroke555stroke-width1pxcolor000-class-asm-stateless-class-aintardecatoolatoolresasubtaskaworkaupdatebdelegbresultinreqauthreq-stateful-class-aterm-terminal-class-decide-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      flowchart TD subgraph ORIG[Originator] OREQ[Request User/Service/Agent] end subgraph A[ClientAgent A] AINT[Intake / Routing] ARDEC{Initial Routing} ASM[Stateless Message - Local Response] ASUBTASK[Create Local Task A₁ state=submitted] AWORK[Working] AUPDATE[Apply Delegate / Tool Result] ATERM[Finalize / Terminal] subgraph TOOL[Tool Execution] ATOOL[Invoke Tool] ATOOLRES[Tool Result] end subgraph DELEGATE[Delegation] BDELEG[Delegate: Create Remote Task] subgraph REMOTE[Delegated Task] BRESULT[Delegate Task Result terminal/partial] end end subgraph INPUTAUTH[Input / Auth Handling] INREQ[input_required] AUTHREQ[auth-required] end DECIDE{Next Action?} end OREQ --&gt; AINT --&gt; ARDEC ARDEC --&gt;|Stateless| ASM --&gt; ORESP[Return Response] ARDEC --&gt;|Start Task| ASUBTASK --&gt; AWORK --&gt; DECIDE ARDEC --&gt;|Tool| ATOOL --&gt; ATOOLRES --&gt; AWORK --&gt; DECIDE ARDEC --&gt;|Delegate| BDELEG --&gt; BRESULT --&gt; AUPDATE --&gt; AWORK --&gt; DECIDE DECIDE --&gt;|Tool| ATOOL DECIDE --&gt;|Delegate| BDELEG DECIDE --&gt;|Input| INREQ --&gt; AWORK DECIDE --&gt;|Auth| AUTHREQ --&gt; AWORK DECIDE --&gt;|Finalize| ATERM --&gt; ORESP[Return Response] BDELEG --&gt;|Delegate Update| BRESULT --&gt; AUPDATE --&gt; AWORK AUPDATE --&gt; DECIDE classDef stateless fill:#eef,stroke:#447,stroke-width:1px,color:#000 classDef stateful fill:#efe,stroke:#484,stroke-width:1px,color:#000 classDef terminal fill:#fcc,stroke:#a00,stroke-width:1px,color:#000 classDef decision fill:#f9f9f9,stroke:#555,stroke-width:1px,color:#000 class ASM stateless class AINT,ARDEC,ATOOL,ATOOLRES,ASUBTASK,AWORK,AUPDATE,BDELEG,BRESULT,INREQ,AUTHREQ stateful class ATERM terminal class DECIDE decision
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentic-flow-delegated-task-lifecycle-comprehensive-action-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agentic Flow Delegated Task Lifecycle (Comprehensive Action Paths)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flowchart-td-reqincoming-request-classnormalize-classify-class-authauthenticated-auth-no-denyreject-unauthorized-end-auth-yes-trivtrivial-stateless-triv-yes-genllm-generate-stateless-resp0return-response-fup0follow-up-fup0-yes-req-fup0-no-end-triv-no-needtaskneeds-persistence-multi-step-needtask-no-pretoolneed-tool-pretool-no-gen2llm-reasoning-only-resp0-pretool-yes-tool1invoke-tool-or-tools-gen2-needtask-yes-createcreate-task-statesubmitted-workset-stateworking-work-decidenext-action-decide-tool-tool2invoke-tool-updateupdate-task-decide-delegate-delegdelegate-to-remote-agent-decide-reason-reasoninternal-reasoning-decide-finalize-readyready-to-finalize-deleg-waitawait-remote-events-wait-rupdapply-remote-update-rupd-update-wait-timeout-errtotimeout-handling-update-evalinput-or-auth-needed-reason-eval-tool2-eval-tool1-eval-rupd-eval-eval-input-inreqset-stateinput_required-collectcollect-input-hitl-automated-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      flowchart TD REQ[Incoming Request] --&gt; CLASS[Normalize / Classify] CLASS --&gt; AUTH{Authenticated?} AUTH -- No --&gt; DENY[Reject - unauthorized] --&gt; END AUTH -- Yes --&gt; TRIV{Trivial / Stateless?} TRIV -- Yes --&gt; GEN[LLM Generate - Stateless] --&gt; RESP0[Return Response] --&gt; FUP0{Follow-up?} FUP0 -- Yes --&gt; REQ FUP0 -- No --&gt; END TRIV -- No --&gt; NEEDTASK{Needs Persistence / Multi-step?} NEEDTASK -- No --&gt; PRETOOL{Need Tool?} PRETOOL -- No --&gt; GEN2[LLM Reasoning Only] --&gt; RESP0 PRETOOL -- Yes --&gt; TOOL1[Invoke Tool or Tools] --&gt; GEN2 NEEDTASK -- Yes --&gt; CREATE[Create Task state=submitted] --&gt; WORK[Set state=working] WORK --&gt; DECIDE{Next Action} DECIDE --&gt;|Tool| TOOL2[Invoke Tool] --&gt; UPDATE[Update Task] DECIDE --&gt;|Delegate| DELEG[Delegate to Remote Agent] DECIDE --&gt;|Reason| REASON[Internal Reasoning] DECIDE --&gt;|Finalize?| READY{Ready to Finalize?} DELEG --&gt; WAIT[Await Remote Events] WAIT --&gt; RUPD[Apply Remote Update] RUPD --&gt; UPDATE WAIT -- Timeout --&gt; ERRTO[Timeout Handling] UPDATE --&gt; EVAL{Input or Auth Needed?} REASON --&gt; EVAL TOOL2 --&gt; EVAL TOOL1 --&gt; EVAL RUPD --&gt; EVAL EVAL -- Input --&gt; INREQ[Set state=input_required] --&gt; COLLECT[Collect Input - HITL / Automated] --&gt; WORK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glossary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-extend-this-to-your-own-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to extend this to your own work
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Lab 5 Logging</h1>
+
+<h2 id="introduction-to-logging">Introduction to logging<a class="headerlink" href="#introduction-to-logging" title="Permanent link">¶</a></h2>
+<p>We will not do this step as part of this lab, but before we deploy the SparkMate agent for use in production, logging needs to be implemented to ensure that we have the records of actions taken by the agent and user interactions with the agent. This is a key element of security &amp; compliance for any system because it provides an auditable record that can either demonstrate adherence or help with an invesetigation if something goes wrong.</p>
+<p>Microsoft Purview offers <a href="https://learn.microsoft.com/en-us/purview/audit-copilot" target="_blank" rel="noopener noreferrer">audit logging for AI and Copilot</a> or you can implement your own audit logging approach.</p>
+<p><br></p>
+<h2 id="lab">Lab<a class="headerlink" href="#lab" title="Permanent link">¶</a></h2>
+<h3 id="observability-reference-schema">Observability: reference schema<a class="headerlink" href="#observability-reference-schema" title="Permanent link">¶</a></h3>
+<p>For this lab, the focus is on providing you a reference schema with guidance for implementing for your own solution. <em>Use the decision tree below to determine which table is most relevant to your scenario</em></p>
+<ol>
+<li>Review the schema options and determine what would be appicable to the SparkMate agent.</li>
+</ol>
+<p><br></p>
+<h2 id="logging-table-decision-guide">Logging Table Decision Guide<a class="headerlink" href="#logging-table-decision-guide" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code>flowchart TD
+  A[Start: AI Usage] --&gt; B{Does the interaction involve an agent?}
+  B -- No --&gt; E[Use Table 1: Non-Agentic Logging]
+  B -- Yes --&gt; C[Use Table 2: Unified Agentic Logging]
+</code></pre></div>
+<hr>
+<p><br></p>
+<h2 id="table-1-reference-example-user-activities-with-copilot-and-ai-applications">Table 1 — Reference example user activities with Copilot and AI applications<a class="headerlink" href="#table-1-reference-example-user-activities-with-copilot-and-ai-applications" title="Permanent link">¶</a></h2>
+<p>Here is a <a href="https://learn.microsoft.com/en-us/purview/audit-copilot#user-activities-with-copilot-and-ai-applications" target="_blank" rel="noopener noreferrer">reference example</a> of minimum logging schema for AI applications.</p>
+<p><br></p>
+<h2 id="table-2-full-snapshot-profile-complete-superset">Table 2 — Full Snapshot Profile (Complete Superset)<a class="headerlink" href="#table-2-full-snapshot-profile-complete-superset" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+<th>Mapping (Source)</th>
+<th>OTel Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F2</td>
+<td>SpanType</td>
+<td>string</td>
+<td>ExecutionSpan</td>
+<td>InvocationSpan</td>
+<td>ToolSpan</td>
+</tr>
+<tr>
+<td>F3</td>
+<td>Role</td>
+<td>string</td>
+<td>Actor role (Human/Agent/Event/System)</td>
+<td>sourceMetadata.role</td>
+<td>gen_ai.agent.role (proposed)</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>Perspective</td>
+<td>string</td>
+<td>Caller or Callee</td>
+<td>derived / explicit</td>
+<td>gen_ai.agent.perspective (proposed)</td>
+</tr>
+<tr>
+<td>F5</td>
+<td>ExecutionType</td>
+<td>string</td>
+<td>HumanToAgent</td>
+<td>Agent2Agent</td>
+<td>EventToAgent</td>
+</tr>
+<tr>
+<td>F6</td>
+<td>AgentID</td>
+<td>string</td>
+<td>Executing agent id (self)</td>
+<td>gen_ai.agent.id</td>
+<td>gen_ai.agent.id</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>AgentName</td>
+<td>string</td>
+<td>Human-friendly name</td>
+<td>gen_ai.agent.name</td>
+<td>gen_ai.agent.name</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>AgentDescription</td>
+<td>string</td>
+<td>Agent description</td>
+<td>gen_ai.agent.description</td>
+<td>gen_ai.agent.description</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>SessionID</td>
+<td>string</td>
+<td>Stable conversational/session id</td>
+<td>session.id</td>
+<td>session.id</td>
+</tr>
+<tr>
+<td>F10</td>
+<td>ConversationID</td>
+<td>string</td>
+<td>High-level conversation/thread id</td>
+<td>gen_ai.conversation.id</td>
+<td>gen_ai.conversation.id</td>
+</tr>
+<tr>
+<td>F11</td>
+<td>TargetAgentID</td>
+<td>string</td>
+<td>Remote agent when delegating (Caller)</td>
+<td>remote agent id</td>
+<td>gen_ai.target.agent.id (proposed)</td>
+</tr>
+<tr>
+<td>F12</td>
+<td>TargetAgentEndpointHost</td>
+<td>string</td>
+<td>Remote host (Caller)</td>
+<td>server.address</td>
+<td>server.address</td>
+</tr>
+<tr>
+<td>F13</td>
+<td>TargetAgentEndpointPort</td>
+<td>int</td>
+<td>Remote port (Caller)</td>
+<td>server.port</td>
+<td>server.port</td>
+</tr>
+<tr>
+<td>F14</td>
+<td>RequestContent</td>
+<td>string</td>
+<td>Input prompt/content</td>
+<td>gen_ai.request.content</td>
+<td>gen_ai.request.content</td>
+</tr>
+<tr>
+<td>F15</td>
+<td>ResponseContent</td>
+<td>string</td>
+<td>Final response text</td>
+<td>gen_ai.event.content</td>
+<td>gen_ai.event.content</td>
+</tr>
+<tr>
+<td>F20</td>
+<td>StartTime</td>
+<td>datetime</td>
+<td>Operation start ts</td>
+<td>activity start</td>
+<td>span.start_time</td>
+</tr>
+<tr>
+<td>F21</td>
+<td>EndTime</td>
+<td>datetime</td>
+<td>Operation end ts</td>
+<td>activity end</td>
+<td>span.end_time</td>
+</tr>
+<tr>
+<td>F22</td>
+<td>SnapshotID</td>
+<td>string</td>
+<td>Unique snapshot record id</td>
+<td>gen_ai.snapshot.id</td>
+<td>gen_ai.snapshot.id (proposed)</td>
+</tr>
+<tr>
+<td>F23</td>
+<td>SnapshotSequence</td>
+<td>string</td>
+<td>Ordered sequence / DAG reference</td>
+<td>gen_ai.snapshot.sequence</td>
+<td>gen_ai.snapshot.sequence (proposed)</td>
+</tr>
+<tr>
+<td>F24</td>
+<td>TaskStatus</td>
+<td>string</td>
+<td>Task/message status (completed, failed, working, etc.)</td>
+<td>gen_ai.agent.task_status</td>
+<td>gen_ai.agent.task_status (proposed)</td>
+</tr>
+<tr>
+<td>F25</td>
+<td>BlockingType</td>
+<td>string</td>
+<td>input-required</td>
+<td>auth-required</td>
+<td>rate-limit</td>
+</tr>
+<tr>
+<td>F26</td>
+<td>ArtifactID</td>
+<td>string</td>
+<td>Individual artifact id</td>
+<td>gen_ai.artifact.id</td>
+<td>gen_ai.artifact.id (proposed)</td>
+</tr>
+<tr>
+<td>F27</td>
+<td>ArtifactCount</td>
+<td>int</td>
+<td>Total artifacts produced</td>
+<td>gen_ai.artifact.count</td>
+<td>gen_ai.artifact.count (proposed)</td>
+</tr>
+<tr>
+<td>F28</td>
+<td>AccessedArtifacts</td>
+<td>array/json</td>
+<td>List of accessed artifact storage location/urls</td>
+<td>gen_ai.artifact.accessed</td>
+<td>gen_ai.artifact.accessed (proposed)</td>
+</tr>
+<tr>
+<td>F28</td>
+<td>InputArtifacts</td>
+<td>array/json</td>
+<td>List of user provided artifact storage location/urls</td>
+<td>gen_ai.artifact.accessed</td>
+<td>gen_ai.artifact.accessed (proposed)</td>
+</tr>
+<tr>
+<td>F29</td>
+<td>GeneratedArtifacts</td>
+<td>array/json</td>
+<td>List of generated artifact storage location/urls</td>
+<td>gen_ai.artifact.generated</td>
+<td>gen_ai.artifact.generated (proposed)</td>
+</tr>
+<tr>
+<td>F41</td>
+<td>ExecutionPhase</td>
+<td>string</td>
+<td>planning</td>
+<td>invocation</td>
+<td>finalizing</td>
+</tr>
+<tr>
+<td>F42</td>
+<td>AgentVersion</td>
+<td>string</td>
+<td>Agent implementation version</td>
+<td>gen_ai.agent.version</td>
+<td>gen_ai.agent.version (proposed)</td>
+</tr>
+<tr>
+<td>F43</td>
+<td>TargetAgentVersion</td>
+<td>string</td>
+<td>Remote agent version</td>
+<td>gen_ai.remote.agent.version</td>
+<td>gen_ai.target.agent.version (proposed)</td>
+</tr>
+<tr>
+<td>F44</td>
+<td>AgentGoLiveDate</td>
+<td>date</td>
+<td>Agent production go-live date</td>
+<td>gen_ai.agent.go_live_date</td>
+<td>gen_ai.agent.go_live_date (proposed)</td>
+</tr>
+<tr>
+<td>F45</td>
+<td>TargetAgentGoLiveDate</td>
+<td>date</td>
+<td>Remote agent go-live date</td>
+<td>gen_ai.remote.agent.go_live_date</td>
+<td>gen_ai.target.agent.go_live_date (proposed)</td>
+</tr>
+<tr>
+<td>F46</td>
+<td>TargetAgentOwnership</td>
+<td>string</td>
+<td>Ownership classification (1P</td>
+<td>3P)</td>
+<td>(new provenance source)</td>
+</tr>
+<tr>
+<td>F47</td>
+<td>TargetAgentPublisher</td>
+<td>string</td>
+<td>Publisher / vendor identifier (org slug)</td>
+<td>(new provenance source)</td>
+<td>gen_ai.target.agent.publisher (proposed)</td>
+</tr>
+<tr>
+<td>F48</td>
+<td>InferenceSpan Fields (from Table 1)*</td>
+<td>object</td>
+<td>Model invocation details</td>
+<td>inference span fields</td>
+<td>(see inference span attributes)</td>
+</tr>
+<tr>
+<td>F49</td>
+<td>ToolSpan Fields (from table 2.1)*</td>
+<td>object</td>
+<td>MAY</td>
+<td>Tool execution details</td>
+<td>see Tool table</td>
+</tr>
+<tr>
+<td>F50</td>
+<td>InputModalities</td>
+<td>array/string</td>
+<td>Modalities present in request (text,image,audio,video,document,structured)</td>
+<td>derived request parts</td>
+<td>gen_ai.input.modalities (proposed)</td>
+</tr>
+<tr>
+<td>F51</td>
+<td>OutputModalities</td>
+<td>array/string</td>
+<td>Modalities produced in final/partial response</td>
+<td>derived artifacts</td>
+<td>gen_ai.output.modalities (proposed)</td>
+</tr>
+<tr>
+<td>F55</td>
+<td>ImageHash</td>
+<td>string</td>
+<td>Per-image perceptual hash (privacy-safe)</td>
+<td>hashing pipeline</td>
+<td>media.image.hash (proposed)</td>
+</tr>
+<tr>
+<td>F56</td>
+<td>VideoHash</td>
+<td>string</td>
+<td>Per-video hash/fingerprint</td>
+<td>hashing pipeline</td>
+<td>media.video.hash (proposed)</td>
+</tr>
+<tr>
+<td>F57</td>
+<td>AudioTranscriptHash</td>
+<td>string</td>
+<td>Hash of transcript (if transcription performed)</td>
+<td>ASR output</td>
+<td>media.audio.transcript_hash (proposed)</td>
+</tr>
+<tr>
+<td>F58</td>
+<td>OCRTextHash</td>
+<td>string</td>
+<td>Hash of OCR text extracted from images/PDF</td>
+<td>OCR output</td>
+<td>media.ocr.text_hash (proposed)</td>
+</tr>
+<tr>
+<td>F59</td>
+<td>RAI Classifiers</td>
+<td>string</td>
+<td>Responsible AI classifier</td>
+<td>language ID service</td>
+<td>content.language.detected</td>
+</tr>
+</tbody>
+</table>
+<p>ToolSpan &amp; InferenceSpan sub-structures (when SpanType=ToolSpan or InferenceSpan) inherit the same requirements as in Table 2A; additional future snapshot fields (e.g. ToolParameters) apply at both span and snapshot record levels when available.</p>
+<p><br></p>
+<h3 id="table-21-toolspan-fields-full-snapshot">Table 2.1 — ToolSpan Fields (Full Snapshot)<a class="headerlink" href="#table-21-toolspan-fields-full-snapshot" title="Permanent link">¶</a></h3>
+<p>Explicit listing of ToolSpan-specific fields within Full Snapshot profile.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>FullProfile Req</th>
+<th>Status (Current)</th>
+<th>Description</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ToolName</td>
+<td>string</td>
+<td>MUST</td>
+<td>Present</td>
+<td>Logical tool name</td>
+<td>gen_ai.tool.name</td>
+</tr>
+<tr>
+<td>ToolID</td>
+<td>string</td>
+<td>SHOULD</td>
+<td>Present</td>
+<td>Unique tool invocation id</td>
+<td>gen_ai.tool.call.id</td>
+</tr>
+<tr>
+<td>ToolType</td>
+<td>string</td>
+<td>SHOULD</td>
+<td>Present</td>
+<td>(Tool, Resource, Prompt)</td>
+<td>gen_ai.tool.type</td>
+</tr>
+<tr>
+<td>ToolDescription</td>
+<td>string</td>
+<td>MAY</td>
+<td>Present</td>
+<td>Human readable description</td>
+<td>gen_ai.tool.description</td>
+</tr>
+<tr>
+<td>ToolArgumentsRaw</td>
+<td>string</td>
+<td>SHOULD</td>
+<td>Present</td>
+<td>Raw unparsed argument payload</td>
+<td>gen_ai.tool.arguments</td>
+</tr>
+<tr>
+<td>ToolRequestTimestamp</td>
+<td>datetime</td>
+<td>MAY</td>
+<td>Planned</td>
+<td>Tool call start (out-of-span)</td>
+<td>gen_ai.tool.request.ts</td>
+</tr>
+<tr>
+<td>ToolResponseTimestamp</td>
+<td>datetime</td>
+<td>MAY</td>
+<td>Planned</td>
+<td>Tool call end (out-of-span)</td>
+<td>gen_ai.tool.response.ts</td>
+</tr>
+<tr>
+<td>ToolResult</td>
+<td>string</td>
+<td>SHOULD</td>
+<td>Present</td>
+<td>Final tool output</td>
+<td>gen_ai.event.content</td>
+</tr>
+<tr>
+<td>ToolSchemaVersion</td>
+<td>string</td>
+<td>MAY</td>
+<td>Planned</td>
+<td>Output schema version</td>
+<td>gen_ai.tool.schema_version</td>
+</tr>
+<tr>
+<td>ToolDocstring</td>
+<td>string</td>
+<td>MAY</td>
+<td>Planned</td>
+<td>Tool docstring/description digest</td>
+<td>gen_ai.tool.doc_string</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><br></p>
+<h2 id="agentic-flow-delegated-task-lifecycle-single-agent-a2a-tool-invocation">Agentic Flow Delegated Task Lifecycle (Single Agent, A2A, Tool Invocation)<a class="headerlink" href="#agentic-flow-delegated-task-lifecycle-single-agent-a2a-tool-invocation" title="Permanent link">¶</a></h2>
+<p>Diagram Narrative: Intake classifies the inbound request; a trivial/fully stateless path can return immediately. For stateful handling the agent creates a local task (submitted → working). At each decision loop the orchestrator selects one of: invoke a local tool (tool subgraph), delegate to another agent (delegation subgraph), obtain user clarification or authorization (input_required / auth-required subgraph), or finalize. Delegation creates a remote task; remote updates stream back and are merged (Apply Delegate / Tool Result) before re-entering the decision gateway. Input/auth loops block progress while preserving working context, accumulating blocking dwell metrics (BlockingSince / BlockingIterations). Tool and delegation paths are orthogonal—tools may continue to run after a delegation has started. Finalization composes artifacts, sets terminal state (completed / failed / canceled / rejected / unknown) and returns the response.</p>
+<h2 id="flowchart-td-subgraph-origoriginator-oreqrequest-userserviceagent-end-subgraph-aclientagent-a-aintintake-routing-ardecinitial-routing-asmstateless-message-local-response-asubtaskcreate-local-task-a1-statesubmitted-aworkworking-aupdateapply-delegate-tool-result-atermfinalize-terminal-subgraph-tooltool-execution-atoolinvoke-tool-atoolrestool-result-end-subgraph-delegatedelegation-bdelegdelegate-create-remote-task-subgraph-remotedelegated-task-bresultdelegate-task-result-terminalpartial-end-end-subgraph-inputauthinput-auth-handling-inreqinput_required-authreqauth-required-end-decidenext-action-end-oreq-aint-ardec-ardec-stateless-asm-orespreturn-response-ardec-start-task-asubtask-awork-decide-ardec-tool-atool-atoolres-awork-decide-ardec-delegate-bdeleg-bresult-aupdate-awork-decide-decide-tool-atool-decide-delegate-bdeleg-decide-input-inreq-awork-decide-auth-authreq-awork-decide-finalize-aterm-orespreturn-response-bdeleg-delegate-update-bresult-aupdate-awork-aupdate-decide-classdef-stateless-filleefstroke447stroke-width1pxcolor000-classdef-stateful-fillefestroke484stroke-width1pxcolor000-classdef-terminal-fillfccstrokea00stroke-width1pxcolor000-classdef-decision-fillf9f9f9stroke555stroke-width1pxcolor000-class-asm-stateless-class-aintardecatoolatoolresasubtaskaworkaupdatebdelegbresultinreqauthreq-stateful-class-aterm-terminal-class-decide-decision"><div class="highlight"><pre><span></span><code>flowchart TD
+    subgraph ORIG[Originator]
+        OREQ[Request User/Service/Agent]
+    end
+
+    subgraph A[ClientAgent A]
+        AINT[Intake / Routing]
+        ARDEC{Initial Routing}
+        ASM[Stateless Message - Local Response]
+        ASUBTASK[Create Local Task A₁ state=submitted]
+        AWORK[Working]
+        AUPDATE[Apply Delegate / Tool Result]
+        ATERM[Finalize / Terminal]
+
+        subgraph TOOL[Tool Execution]
+            ATOOL[Invoke Tool]
+            ATOOLRES[Tool Result]
+        end
+
+        subgraph DELEGATE[Delegation]
+            BDELEG[Delegate: Create Remote Task]
+            subgraph REMOTE[Delegated Task]
+                BRESULT[Delegate Task Result terminal/partial]
+            end
+        end
+
+        subgraph INPUTAUTH[Input / Auth Handling]
+            INREQ[input_required]
+            AUTHREQ[auth-required]
+        end
+
+        DECIDE{Next Action?}
+    end
+
+    OREQ --&gt; AINT --&gt; ARDEC
+    ARDEC --&gt;|Stateless| ASM --&gt; ORESP[Return Response]
+    ARDEC --&gt;|Start Task| ASUBTASK --&gt; AWORK --&gt; DECIDE
+    ARDEC --&gt;|Tool| ATOOL --&gt; ATOOLRES --&gt; AWORK --&gt; DECIDE
+    ARDEC --&gt;|Delegate| BDELEG --&gt; BRESULT --&gt; AUPDATE --&gt; AWORK --&gt; DECIDE
+
+    DECIDE --&gt;|Tool| ATOOL
+    DECIDE --&gt;|Delegate| BDELEG
+    DECIDE --&gt;|Input| INREQ --&gt; AWORK
+    DECIDE --&gt;|Auth| AUTHREQ --&gt; AWORK
+    DECIDE --&gt;|Finalize| ATERM --&gt; ORESP[Return Response]
+
+    BDELEG --&gt;|Delegate Update| BRESULT --&gt; AUPDATE --&gt; AWORK
+    AUPDATE --&gt; DECIDE
+
+    classDef stateless fill:#eef,stroke:#447,stroke-width:1px,color:#000
+    classDef stateful fill:#efe,stroke:#484,stroke-width:1px,color:#000
+    classDef terminal fill:#fcc,stroke:#a00,stroke-width:1px,color:#000
+    classDef decision fill:#f9f9f9,stroke:#555,stroke-width:1px,color:#000
+    class ASM stateless
+    class AINT,ARDEC,ATOOL,ATOOLRES,ASUBTASK,AWORK,AUPDATE,BDELEG,BRESULT,INREQ,AUTHREQ stateful
+    class ATERM terminal
+    class DECIDE decision
+</code></pre></div><a class="headerlink" href="#flowchart-td-subgraph-origoriginator-oreqrequest-userserviceagent-end-subgraph-aclientagent-a-aintintake-routing-ardecinitial-routing-asmstateless-message-local-response-asubtaskcreate-local-task-a1-statesubmitted-aworkworking-aupdateapply-delegate-tool-result-atermfinalize-terminal-subgraph-tooltool-execution-atoolinvoke-tool-atoolrestool-result-end-subgraph-delegatedelegation-bdelegdelegate-create-remote-task-subgraph-remotedelegated-task-bresultdelegate-task-result-terminalpartial-end-end-subgraph-inputauthinput-auth-handling-inreqinput_required-authreqauth-required-end-decidenext-action-end-oreq-aint-ardec-ardec-stateless-asm-orespreturn-response-ardec-start-task-asubtask-awork-decide-ardec-tool-atool-atoolres-awork-decide-ardec-delegate-bdeleg-bresult-aupdate-awork-decide-decide-tool-atool-decide-delegate-bdeleg-decide-input-inreq-awork-decide-auth-authreq-awork-decide-finalize-aterm-orespreturn-response-bdeleg-delegate-update-bresult-aupdate-awork-aupdate-decide-classdef-stateless-filleefstroke447stroke-width1pxcolor000-classdef-stateful-fillefestroke484stroke-width1pxcolor000-classdef-terminal-fillfccstrokea00stroke-width1pxcolor000-classdef-decision-fillf9f9f9stroke555stroke-width1pxcolor000-class-asm-stateless-class-aintardecatoolatoolresasubtaskaworkaupdatebdelegbresultinreqauthreq-stateful-class-aterm-terminal-class-decide-decision" title="Permanent link">¶</a></h2>
+<p><br></p>
+<h4 id="task-state-progression-remoteagent-b-exemplar">Task State Progression (RemoteAgent B exemplar)<a class="headerlink" href="#task-state-progression-remoteagent-b-exemplar" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Spec State</th>
+<th>Meaning</th>
+<th>Stateful?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>submitted</td>
+<td>Accepted, queued/not yet executing</td>
+<td>Yes</td>
+<td>Emitted once on creation</td>
+</tr>
+<tr>
+<td>2</td>
+<td>working</td>
+<td>Actively processing</td>
+<td>Yes</td>
+<td>Can repeat with updates</td>
+</tr>
+<tr>
+<td>3 (branch)</td>
+<td>input_required</td>
+<td>Awaiting additional input</td>
+<td>Yes</td>
+<td>Clarification / missing parameter / artifact wait</td>
+</tr>
+<tr>
+<td>3 (alt)</td>
+<td>auth-required</td>
+<td>Awaiting credentials/consent</td>
+<td>Yes</td>
+<td>Security / token refresh gated</td>
+</tr>
+<tr>
+<td>4a</td>
+<td>completed</td>
+<td>Successful terminal</td>
+<td>Yes (terminal)</td>
+<td>Artifacts stable</td>
+</tr>
+<tr>
+<td>4b</td>
+<td>failed</td>
+<td>Error terminal</td>
+<td>Yes (terminal)</td>
+<td>Include error.type mapping</td>
+</tr>
+<tr>
+<td>4c</td>
+<td>canceled</td>
+<td>Client canceled</td>
+<td>Yes (terminal)</td>
+<td>Propagate upstream cancellation</td>
+</tr>
+<tr>
+<td>4d</td>
+<td>rejected</td>
+<td>Policy / validation refusal</td>
+<td>Yes (terminal)</td>
+<td>No execution</td>
+</tr>
+<tr>
+<td>4e</td>
+<td>unknown</td>
+<td>Indeterminate final</td>
+<td>Yes (terminal)</td>
+<td>Recovery gap</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h4 id="human-in-the-loop-hitl-clarification-patterns">Human-in-the-loop (HITL) Clarification Patterns<a class="headerlink" href="#human-in-the-loop-hitl-clarification-patterns" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Purpose / Trigger</th>
+<th>Example Representation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clarification</td>
+<td>Disambiguate intent or parameters</td>
+<td _clarification_="&quot;clarification&quot;," _region_="&quot;region&quot;" field:="field:" reason:="reason:">status_metadata:</td>
+</tr>
+<tr>
+<td>Form completion</td>
+<td>Structured parameter capture</td>
+<td _form_="&quot;form&quot;," _start_date_end_date_="[&quot;start_date&quot;,&quot;end_date&quot;]" fields:="fields:" reason:="reason:">status_metadata:</td>
+</tr>
+<tr>
+<td>Approval</td>
+<td>Risk / policy gate</td>
+<td _approval_="&quot;approval&quot;," _xyz_="&quot;xyz&quot;" policy_id:="policy_id:" reason:="reason:">status_metadata:</td>
+</tr>
+<tr>
+<td>Missing resource</td>
+<td>Required artifact not yet provided</td>
+<td _artifact_="&quot;artifact&quot;," _csv_="&quot;csv&quot;" expected_format:="expected_format:" reason:="reason:">status_metadata:</td>
+</tr>
+<tr>
+<td>Downstream wait</td>
+<td>Awaiting remote/tool fan-in</td>
+<td _dependency_="&quot;dependency&quot;" reason:="reason:">status_metadata:</td>
+</tr>
+<tr>
+<td>Cancellation</td>
+<td>User/system abort leading to terminal state=canceled</td>
+<td _cancellation_="&quot;cancellation&quot;," _input_required_="&quot;input_required&quot;" _user_="&quot;user&quot;," actor:="actor:" at_state:="at_state:" reason:="reason:">status_metadata:</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h4 id="stateful-vs-stateless-flows">Stateful vs. Stateless Flows<a class="headerlink" href="#stateful-vs-stateless-flows" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Flow Segment</th>
+<th>Stateful?</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stateless Message (ASM)</td>
+<td>No</td>
+<td>Single turn; no Task object created</td>
+</tr>
+<tr>
+<td>Local Tool Invocation</td>
+<td>Ephemeral</td>
+<td>Tool call traced outside Task unless wrapped</td>
+</tr>
+<tr>
+<td>Delegated Remote Task</td>
+<td>Yes</td>
+<td>Maintains Task + status/artifacts</td>
+</tr>
+<tr>
+<td>Local Task Wrapper</td>
+<td>Yes</td>
+<td>Internal orchestrator state referencing remote + tools</td>
+</tr>
+<tr>
+<td>Streaming Events</td>
+<td>Derives state</td>
+<td>Convey transitions without persistent state</td>
+</tr>
+<tr>
+<td>input_required / auth-required</td>
+<td>Yes</td>
+<td>Blocking states</td>
+</tr>
+<tr>
+<td>Terminal States</td>
+<td>Yes</td>
+<td>Immutable lifecycle end</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><br></p>
+<h2 id="agentic-flow-delegated-task-lifecycle-comprehensive-action-paths">Agentic Flow Delegated Task Lifecycle (Comprehensive Action Paths)<a class="headerlink" href="#agentic-flow-delegated-task-lifecycle-comprehensive-action-paths" title="Permanent link">¶</a></h2>
+<p>Decision tree merges routing, task orchestration, conditional tool use, delegation, and status re‑evaluation loops. Highlights where lifecycle state transitions occur.</p>
+<p>Key Goals: earliest stateless exit, conditional tool usage before/after task creation, delegation orthogonal choice, explicit blocking loops, clear telemetry emission points.</p>
+<h2 id="flowchart-td-reqincoming-request-classnormalize-classify-class-authauthenticated-auth-no-denyreject-unauthorized-end-auth-yes-trivtrivial-stateless-triv-yes-genllm-generate-stateless-resp0return-response-fup0follow-up-fup0-yes-req-fup0-no-end-triv-no-needtaskneeds-persistence-multi-step-needtask-no-pretoolneed-tool-pretool-no-gen2llm-reasoning-only-resp0-pretool-yes-tool1invoke-tool-or-tools-gen2-needtask-yes-createcreate-task-statesubmitted-workset-stateworking-work-decidenext-action-decide-tool-tool2invoke-tool-updateupdate-task-decide-delegate-delegdelegate-to-remote-agent-decide-reason-reasoninternal-reasoning-decide-finalize-readyready-to-finalize-deleg-waitawait-remote-events-wait-rupdapply-remote-update-rupd-update-wait-timeout-errtotimeout-handling-update-evalinput-or-auth-needed-reason-eval-tool2-eval-tool1-eval-rupd-eval-eval-input-inreqset-stateinput_required-collectcollect-input-hitl-automated-work"><div class="highlight"><pre><span></span><code>flowchart TD
+    REQ[Incoming Request] --&gt; CLASS[Normalize / Classify]
+    CLASS --&gt; AUTH{Authenticated?}
+    AUTH -- No --&gt; DENY[Reject - unauthorized] --&gt; END
+    AUTH -- Yes --&gt; TRIV{Trivial / Stateless?}
+    TRIV -- Yes --&gt; GEN[LLM Generate - Stateless] --&gt; RESP0[Return Response] --&gt; FUP0{Follow-up?}
+    FUP0 -- Yes --&gt; REQ
+    FUP0 -- No --&gt; END
+    TRIV -- No --&gt; NEEDTASK{Needs Persistence / Multi-step?}
+    NEEDTASK -- No --&gt; PRETOOL{Need Tool?}
+    PRETOOL -- No --&gt; GEN2[LLM Reasoning Only] --&gt; RESP0
+    PRETOOL -- Yes --&gt; TOOL1[Invoke Tool or Tools] --&gt; GEN2
+    NEEDTASK -- Yes --&gt; CREATE[Create Task state=submitted] --&gt; WORK[Set state=working]
+    WORK --&gt; DECIDE{Next Action}
+    DECIDE --&gt;|Tool| TOOL2[Invoke Tool] --&gt; UPDATE[Update Task]
+    DECIDE --&gt;|Delegate| DELEG[Delegate to Remote Agent]
+    DECIDE --&gt;|Reason| REASON[Internal Reasoning]
+    DECIDE --&gt;|Finalize?| READY{Ready to Finalize?}
+    DELEG --&gt; WAIT[Await Remote Events]
+    WAIT --&gt; RUPD[Apply Remote Update]
+    RUPD --&gt; UPDATE
+    WAIT -- Timeout --&gt; ERRTO[Timeout Handling]
+    UPDATE --&gt; EVAL{Input or Auth Needed?}
+    REASON --&gt; EVAL
+    TOOL2 --&gt; EVAL
+    TOOL1 --&gt; EVAL
+    RUPD --&gt; EVAL
+    EVAL -- Input --&gt; INREQ[Set state=input_required] --&gt; COLLECT[Collect Input - HITL / Automated] --&gt; WORK
+</code></pre></div><a class="headerlink" href="#flowchart-td-reqincoming-request-classnormalize-classify-class-authauthenticated-auth-no-denyreject-unauthorized-end-auth-yes-trivtrivial-stateless-triv-yes-genllm-generate-stateless-resp0return-response-fup0follow-up-fup0-yes-req-fup0-no-end-triv-no-needtaskneeds-persistence-multi-step-needtask-no-pretoolneed-tool-pretool-no-gen2llm-reasoning-only-resp0-pretool-yes-tool1invoke-tool-or-tools-gen2-needtask-yes-createcreate-task-statesubmitted-workset-stateworking-work-decidenext-action-decide-tool-tool2invoke-tool-updateupdate-task-decide-delegate-delegdelegate-to-remote-agent-decide-reason-reasoninternal-reasoning-decide-finalize-readyready-to-finalize-deleg-waitawait-remote-events-wait-rupdapply-remote-update-rupd-update-wait-timeout-errtotimeout-handling-update-evalinput-or-auth-needed-reason-eval-tool2-eval-tool1-eval-rupd-eval-eval-input-inreqset-stateinput_required-collectcollect-input-hitl-automated-work" title="Permanent link">¶</a></h2>
+<p><br></p>
+<h3 id="repository-references">Repository References<a class="headerlink" href="#repository-references" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Semantic Conventions (OpenTelemetry)</td>
+<td><a href="https://github.com/open-telemetry/semantic-conventions" target="_blank" rel="noopener noreferrer">https://github.com/open-telemetry/semantic-conventions</a></td>
+</tr>
+<tr>
+<td>Agent logging &amp; tracing (OpenTelemetry)</td>
+<td><a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/" target="_blank" rel="noopener noreferrer">https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/</a></td>
+</tr>
+<tr>
+<td>Azure AI Inference (OpenTelemetry)</td>
+<td><a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/azure-ai-inference/" target="_blank" rel="noopener noreferrer">https://opentelemetry.io/docs/specs/semconv/gen-ai/azure-ai-inference/</a></td>
+</tr>
+<tr>
+<td>A2A Protocol repository</td>
+<td><a href="https://github.com/a2aproject/A2A" target="_blank" rel="noopener noreferrer">https://github.com/a2aproject/A2A</a></td>
+</tr>
+<tr>
+<td>A2A Samples repository</td>
+<td><a href="https://github.com/a2aproject/a2a-samples" target="_blank" rel="noopener noreferrer">https://github.com/a2aproject/a2a-samples</a></td>
+</tr>
+<tr>
+<td>A2A Protocol docs site</td>
+<td><a href="https://google.github.io/A2A/" target="_blank" rel="noopener noreferrer">https://google.github.io/A2A/</a></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="glossary">Glossary<a class="headerlink" href="#glossary" title="Permanent link">¶</a></h2>
+<ul>
+<li>Declarative agent: An agent that completes tasks without calling tools or other agents. Log using Table 2 (invoke_agent — Declarative).</li>
+<li>Non-declarative agent: An agent that may call tools or other agents to complete tasks. Log using Table 3 (invoke_agent — A2A) and/or Table 5 (execute_tool — client-side) and Table 6 (execute_tool — server-side), plus Table 4 (create_agent) when creating agents.</li>
+<li>LLM-only interaction: Direct interaction with a model (no agent orchestration). Log using Table 1 (Original Policy Fields).</li>
+<li>A2A (Agent-to-Agent): One agent invoking another agent. Use RequestingAgentId (caller) and A2ATargetAgentId (callee) and include A2A IDs (A2ARunId, A2AThreadId, A2AMessageId, and their parent/response variants) where available. Log using Table 3.</li>
+<li>Execute tool: An agent invokes a function/API tool, performs a resource call, or executes a prompt templating call. Identify via AISystemPlugin and capture AccessedResources and ToolInvocationId. Log using Table 5 (client-side) and Table 6 (server-side).</li>
+<li>Create agent: Agent registration/instantiation event. Capture AgentID, AgentVersion, AgentGoLiveDate. Log using Table 4.</li>
+<li>ThreadID: Conversation/session identifier for grouping related messages and actions.</li>
+<li>Messages: IDs for prompt/response (no bodies). Use to correlate request/response and timeline order.</li>
+<li>AccessedResources: URIs and action verbs (Read/Edit/Delete, etc.) for resources touched; include SensitivityLabelId when available.</li>
+<li>ModelTransparencyDetails: Provider/model/version metadata for transparency.</li>
+<li>AgentID: Identifier for an agent instance/config.</li>
+<li>RequestingAgentId: The caller agent in an A2A operation.</li>
+<li>AgentVersion: Version/config identifier of the agent at the time of the event.</li>
+<li>AgentGoLiveDate: Date the agent version was first deployed to production.</li>
+<li>TraceId / SpanId / ParentSpanId: W3C Trace Context identifiers for causal correlation and end-to-end stitching.</li>
+<li>CorrelationID: High-level user/session correlation identifier outside tracing, when available.</li>
+<li>Workload: Product or service name emitting the event (e.g., Copilot Studio).</li>
+<li>AppHost: Client app host (e.g., appchat, Teams) where the interaction occurred.</li>
+<li>Contexts (ContainerId, ContextId, ContextType): Where/how the interaction occurred within the application environment.</li>
+<li>Stateful: Multi-step agent execution retaining task/context, enabling accumulated artifacts, delegation tracking, blocking states, and ordered snapshots.</li>
+<li>Stateless: Single-turn (or ephemeral) execution with no persistent task state beyond immediate response generation; no SnapshotSequence beyond a trivial value.</li>
+<li>Spec: Field originates from the A2A protocol specification or base JSON-RPC contract.</li>
+<li>Extension: Field added outside the base spec for observability/analytics; omission does not break protocol compliance.</li>
+<li>Core: Correlation &amp; orchestration identifiers (conversation, request, message threading).</li>
+<li>State: Minimal lifecycle identity &amp; ordering (SnapshotID + SnapshotSequence).</li>
+<li>Timing: Point timestamps or derived durations (phase, dwell, latency).</li>
+<li>Blocking: Indicators and dwell metrics for waits (input-required, auth-required).</li>
+<li>Tool: Prompt assembly, resource access, and tool API invocation metadata.</li>
+<li>Artifact: Durable work products (docs, code, datasets, summaries) tracked by count/sample/size/ID.</li>
+<li>Delegation: Remote agent/task fan-out lineage and remote update timing.</li>
+<li>Actor: Agent identity, versioning, protocol surface.</li>
+<li>Error: Normalized error typing plus raw detail (if emitted separately elsewhere).</li>
+<li>Derived: Computed metrics/values inferred from transitions or aggregations.</li>
+</ul>
+<p><br></p>
+<h2 id="how-to-extend-this-to-your-own-work">How to extend this to your own work<a class="headerlink" href="#how-to-extend-this-to-your-own-work" title="Permanent link">¶</a></h2>
+<p>Reflect on the following to help you define what security &amp; safety actions are important for your agent.</p>
+<ul>
+<li>What actions could my agent take?</li>
+<li>What context(s) will the agent operate within?</li>
+<li>what interactions could users have with my agent?</li>
+</ul>
+<p>Next, we'll look at options for <strong>Monitoring and Alerting</strong> for anomolies from your agent in production.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../lab-4-testing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 4 Testing">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 4 Testing
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab-6-monitoring-alerting/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 6 Monitoring &amp; alerting">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 6 Monitoring &amp; alerting
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.footer", "content.code.copy", "navigation.tabs.sticky", "content.tabs.link"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../js/custom-nav.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

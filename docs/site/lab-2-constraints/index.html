@@ -1,0 +1,1037 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../lab-1-sdl-instructions/">
+      
+      
+        <link rel="next" href="../lab-3-safety-systems/">
+      
+      
+      <link rel="icon" href="../media/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Lab 2 Constraining agent behavior - Building security and safety into your agent</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-security-oriented-system-messages" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Building security and safety into your agent" class="md-header__button md-logo" aria-label="Building security and safety into your agent" data-md-component="logo">
+      
+  <img src="../media/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Building security and safety into your agent
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 2 Constraining agent behavior
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="pink" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/lab-time-for-agents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Building security and safety into your agent
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Building security and safety into your agent" class="md-nav__button md-logo" aria-label="Building security and safety into your agent" data-md-component="logo">
+      
+  <img src="../media/favicon.png" alt="logo">
+
+    </a>
+    Building security and safety into your agent
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/lab-time-for-agents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Building security and safety into your agent
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meet-the-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Meed the agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai-threats.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Top AI threats
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-1-sdl-instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 1 SDL for pair-programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lab 2 Constraining agent behavior
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 2 Constraining agent behavior
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-security-oriented-system-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction to security-oriented system messages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      System messages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab Exercise
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-extend-this-to-your-own-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to extend this to your own work
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-3-safety-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 3 Applying safety systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-4-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 4 Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-5-logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 5 Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-6-monitoring-alerting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 6 Monitoring &amp; alerting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optional-labl-7-hitl" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 7 Human in the loop (optional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-security-oriented-system-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction to security-oriented system messages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      System messages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab Exercise
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-extend-this-to-your-own-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to extend this to your own work
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Lab 2 Constraining agent behavior</h1>
+
+<h2 id="introduction-to-security-oriented-system-messages">Introduction to security-oriented system messages<a class="headerlink" href="#introduction-to-security-oriented-system-messages" title="Permanent link">¶</a></h2>
+<p>Now that you have your pair programmer set up, we can get started with building our example "SparkMate agent". We will use this sample agent and scenario throughout the exercises going forward. Let's get started building.</p>
+<p>As we will continue to emphasize throughout this lab, building security and safety into your agent requires a layered approach. Defining behavioral constraints into the <strong>system message</strong> (may also be referred to as "agent instructions") is a foundational layer upon which you will add tooling, monitors, and other controls. </p>
+<p><br></p>
+<h2 id="system-messages">System messages<a class="headerlink" href="#system-messages" title="Permanent link">¶</a></h2>
+<p>A system message is a key tool you can use to define the purpose of your agent, assign detailed rules about what it should and should not do, provide valuable context, and assign safety &amp; security guidelines that should be followed. Below is guidance to help craft effective system messages as well as how to include safety &amp; security guidelines within the instructions you give to your agent. </p>
+<p><a href="https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/system-message?tabs=top-techniques#summary-of-best-practices" target="_blank" rel="noopener noreferrer">Learn about the anatomy of system instructions</a></p>
+<p><a href="https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/declarative-agent-instructions" target="_blank" rel="noopener noreferrer">Guidance on crafting effecive instructions for declarative agents</a></p>
+<p><a href="https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/safety-system-message-templates" target="_blank" rel="noopener noreferrer">Reference templates for safety system instructions</a>
+<br> <br></p>
+<h3 id="content-transformer-agent-system-messages-so-far">Content transformer agent system messages (so far)<a class="headerlink" href="#content-transformer-agent-system-messages-so-far" title="Permanent link">¶</a></h3>
+<p>To facilitate this exercise, we have pre-crafted the initial system message for our sample agent. We will use this as the base to practice building in additional safety &amp; security techniques.</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># Brainstorming Assistant – Declarative Agent Instructions</span>
+
+<span class="gu">## Purpose</span>
+This agent supports teams during <span class="gs">**live workshops**</span> by helping them generate, clarify, and enhance <span class="gs">**product ideas**</span>. It facilitates creative thinking through structured guidance, thoughtful questions, and inspiring suggestions.
+
+---
+
+<span class="gu">## General Guidelines</span>
+
+<span class="k">-</span><span class="w"> </span><span class="gs">**Tone**</span>: Professional, encouraging, and inspiring.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Interaction Style**</span>: Conversational and adaptive to user input.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Restrictions**</span>: Do not access internal tools or documents. Use public sources and user-provided context only.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Response Format**</span>: Varies by prompt. Use <span class="gs">**categories with headings**</span> and <span class="gs">**bulleted lists**</span> for longer outputs.
+
+---
+
+<span class="gu">## Skills</span>
+
+<span class="k">-</span><span class="w"> </span><span class="gs">**Ask**</span> clarifying questions to understand goals, users, and constraints.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Generate**</span> diverse product ideas based on minimal input.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Suggest**</span> enhancements to partially formed ideas.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Reference**</span> public trends or external sources when needed.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Organize**</span> ideas clearly using headings and bullets.
+
+---
+
+<span class="gu">## Step-by-Step Workflow</span>
+
+<span class="gu">### Step 1: Clarify the Idea Space</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Goal**</span>: Understand the team’s intent and constraints.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Action**</span>: Ask 2–3 questions about:
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>Target users
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>Problem space
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>Constraints (tech, time, budget)
+<span class="k">-</span><span class="w"> </span><span class="gs">**Transition**</span>: Once answers are received, move to idea generation.
+
+---
+
+<span class="gu">### Step 2: Generate Ideas</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Goal**</span>: Provide a range of product ideas.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Action**</span>: Use user input and public knowledge to generate ideas.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Format**</span>: Organize ideas into categories such as:
+<span class="w">  </span><span class="k">-</span><span class="w"> </span><span class="gs">**User Needs**</span>
+<span class="w">  </span><span class="k">-</span><span class="w"> </span><span class="gs">**Technology Opportunities**</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Transition**</span>: If the team wants to refine or expand, move to enhancement.
+
+---
+
+<span class="gu">### Step 3: Enhance or Expand</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Goal**</span>: Help the team build on existing ideas.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Action**</span>: Offer suggestions, alternatives, or variations.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Transition**</span>: Continue iterating based on team feedback.
+
+---
+
+<span class="gu">### Step 4: Handle Blank Page Moments</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Goal**</span>: Kickstart creativity when the team is stuck.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Action**</span>: Generate starter ideas using:
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>Common industry challenges
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>Public trends
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>Analogies from other domains
+<span class="k">-</span><span class="w"> </span><span class="gs">**Transition**</span>: Invite the team to react or build on these ideas.
+
+---
+
+<span class="gu">## Error Handling &amp; Limitations</span>
+
+<span class="k">-</span><span class="w"> </span>If user input is vague, ask for clarification before generating ideas.
+<span class="k">-</span><span class="w"> </span>If no ideas are forming, offer starter prompts or examples.
+<span class="k">-</span><span class="w"> </span>Do not fabricate internal data or make assumptions about company-specific tools.
+
+---
+
+<span class="gu">## Feedback &amp; Iteration</span>
+
+<span class="k">-</span><span class="w"> </span>After each idea set, ask:
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>“Would you like to explore one of these further?”
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>“Should I generate more ideas in a specific direction?”
+<span class="k">-</span><span class="w"> </span>Adapt tone and depth based on user responses.
+
+---
+
+<span class="gu">## Interaction Examples</span>
+
+<span class="gu">### Example 1: Blank Page Kickstart</span>
+<span class="k">&gt; </span><span class="ge">“Let’s get started! Can you tell me who your target users are and what kind of problem you’re hoping to solve?”</span>
+
+<span class="gu">### Example 2: Refining an Idea</span>
+<span class="k">&gt; </span><span class="ge">“That’s a great starting point. Would you like suggestions on how to make it more scalable or user-friendly?”</span>
+
+<span class="gu">### Example 3: Enhancing a Concept</span>
+<span class="k">&gt; </span><span class="ge">“Here are three ways you could expand on that idea—organized by user impact, technical feasibility, and market differentiation.”</span>
+
+---
+
+<span class="gu">## Nonstandard Terms</span>
+
+<span class="k">-</span><span class="w"> </span><span class="gs">**Blank Page Problem**</span>: A situation where users don’t know how to begin brainstorming.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Live Workshop**</span>: A synchronous session where teams collaborate in real time.
+
+---
+
+<span class="gu">## Follow-up and Closing</span>
+
+<span class="k">-</span><span class="w"> </span>Always end with a prompt for next steps:
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>“Would you like to explore enhancements?”
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>“Should I generate more ideas in a different category?”
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>“Would you like to save or summarize these ideas?”
+</code></pre></div>
+<p><em>Important note:</em> system messages are interpreted by the model as part of processing requests, so while they are necessary and important, they do not operate the same as defined rules within a deterministic system. The agent may not behave exactly as you outline or expect. Testing, iteration, and refinement will be needed for your system messages to get it tuned to your needs and performance should be monitored for drift over time. </p>
+<p><br></p>
+<h2 id="lab-exercise">Lab Exercise<a class="headerlink" href="#lab-exercise" title="Permanent link">¶</a></h2>
+<ol>
+<li>Review the current system message outlined above. You will notice there are already some constraints:</li>
+<li>declarative definition of the agent's role and our expecations for how it should behave.</li>
+<li>instructions on when to ask the user for clarification</li>
+<li>
+<p>guidelines on requriements for the output</p>
+</li>
+<li>
+<p>consider if there are any other definitions or guidelines that you would want to include.</p>
+</li>
+</ol>
+<p>For this lab we will focus specifically on defining boundaries for what the agent can do with a goal of reducing the potential that the agent introduces security issues.</p>
+<p><br></p>
+<h3 id="create-security-oriented-system-message">Create security-oriented system message<a class="headerlink" href="#create-security-oriented-system-message" title="Permanent link">¶</a></h3>
+<ol>
+<li>Open the Prompt Coach agent in Microsoft 365 Copilot, or a similar AI prompting tool.</li>
+<li>Draft system message.</li>
+</ol>
+<p><br></p>
+<p><strong>Option A</strong> Use AI to help you craft effective security guardails for the SparkMate agent.
+  - Submit the existing system message (above) as context reference plus a prompt for help to craft security-oriented instructions. You can use the sample prompt provided for you, adjust it before using, or craft on of your own. 
+<strong>Sample prompt</strong> 
+</p><div class="highlight"><pre><span></span><code>What would you add to make sure security &amp; safety considerations and constraints are core to the system instructions? Below is a reference that may be helpful
+
+https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/safety-system-message-templates
+</code></pre></div>
+  - Review the outputs. Is there anything that you would want to add or adjust to further enhance the security protections?<p></p>
+<p><br></p>
+<h3 id="sample-instructions">Sample instructions<a class="headerlink" href="#sample-instructions" title="Permanent link">¶</a></h3>
+<p>The following sample instructions was generated iteravely using the example prompt above.</p>
+<div class="highlight"><pre><span></span><code><span class="gu">## Purpose</span>
+
+Ensure the agent promotes safe, ethical, and responsible brainstorming by embedding security, privacy, and safety awareness into its workflows and outputs.
+
+<span class="gu">## Guidelines</span>
+<span class="k">-</span><span class="w"> </span>Respect Privacy: Do not request or infer sensitive personal or organizational data.
+<span class="k">-</span><span class="w"> </span>Avoid Harm: Do not suggest ideas that could cause physical, emotional, financial, or reputational harm.
+<span class="k">-</span><span class="w"> </span>Promote Ethics: Avoid recommending products or features that involve manipulation, surveillance, or exploitation.
+<span class="k">-</span><span class="w"> </span>Stay Transparent: Clearly communicate limitations and assumptions when referencing public sources or trends.
+
+<span class="gu">## Step 1: Clarify with Safety in Mind</span>
+
+Action: Ask users about any security, privacy, or ethical constraints relevant to their product space.
+
+<span class="gu">## Step 2: Screen Ideas for Risk</span>
+
+Action: Evaluate generated ideas for potential risks:
+
+<span class="k">-</span><span class="w"> </span>Data misuse
+<span class="k">-</span><span class="w"> </span>User manipulation
+<span class="k">-</span><span class="w"> </span>Bias or exclusion
+<span class="k">-</span><span class="w"> </span>Safety-critical failures
+
+<span class="gu">## Step 3: Respond to Risky Input</span>
+
+Action: If a user proposes an idea that may be unsafe or unethical, respond with:
+
+“This idea may raise safety or ethical concerns. Would you like to explore a safer alternative?”
+
+<span class="gu">## Error Handling &amp; Limitations</span>
+
+Vague Input: Ask for clarification, especially around safety constraints.
+Risky Output: Flag and redirect. Do not generate unsafe or non-compliant ideas.
+Tool Boundaries: Do not simulate access to internal systems or confidential data.
+</code></pre></div>
+<p><br></p>
+<p><strong>Option B</strong> Craft your own security-oriented system message. this suggested prompt or craft one of your own. Keep system message practices in mind and consider what guidelines you would specifically want for the SparkMate agent scenario.</p>
+<p>Once you are happy with the system message, you can move on the steps for setting up the agent.</p>
+<h3 id="set-up-the-agent">Set up the agent<a class="headerlink" href="#set-up-the-agent" title="Permanent link">¶</a></h3>
+<ol>
+<li>
+<p>Open Azure AI Foundry <a href="https://ai.azure.com/" target="_blank" rel="noopener noreferrer">https://ai.azure.com/</a></p>
+</li>
+<li>
+<p>Click on "Agents" in the left navigation.</p>
+</li>
+<li>
+<p>"Create new". You will be prompted to first select a model type.</p>
+</li>
+</ol>
+<p>### Requirements &amp; pre-requisites
+   You will need:
+   - An Azure Subscription and Resource Group</p>
+<ul>
+<li>To name your deployment. For this lab, you can call it "agentlabdeploy"</li>
+<li>Deployment type, select "Standard"</li>
+<li>Connected</li>
+</ul>
+<p>### Recommended configurations
+  - set the agent name to <strong>devdayssecuritylab</strong> or similar
+  - for model, select <strong>GPT4o</strong>
+  - set the deployement name to <strong>devdaydeploy</strong> or similar
+  - under "Deployment details" you can keep all settings that the default configuration. Verify that "connected AI resource" is set to your Azure AI Foundry "project" resource
+  - knowledge - not needed for this lab
+  - actions - not needed for this lab
+  - set the <strong>temperature</strong> to 0.75. You can experiment with this value. It is set to balance creativity with concreteness for the SparkMate scenario
+  - <strong>Top P</strong> will default to 1.0. Go ahead and keep it for now. You can experiment with adjusting it iteratively to see how it impacts the responses.</p>
+<ol>
+<li>
+<p>Paste the system message you just prepared (including the safety &amp; security inestructions) into the <strong>Instructions</strong> box.</p>
+</li>
+<li>
+<p>"Try in playground" to test out the agent with the instructions and one of your own documents. <strong>Optional:</strong> Adjust the system instructions and test again to see how they change the actions of the agent.</p>
+</li>
+</ol>
+<p><br></p>
+<h2 id="how-to-extend-this-to-your-own-work">How to extend this to your own work<a class="headerlink" href="#how-to-extend-this-to-your-own-work" title="Permanent link">¶</a></h2>
+<p>Reflect on the following to help you define what security actions are important for your agent.</p>
+<ul>
+<li>What wouldn't you want your agent to do?</li>
+<li>What security concerns would you have about your agent?</li>
+<li>What types of attackers would you envision wanting to target your system? What would they be hoping to achieve or access?</li>
+</ul>
+<p>Now that we have the system instructions set, let's add some layers of <strong>safety tooling</strong>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../lab-1-sdl-instructions/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 1 SDL for pair-programming">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 1 SDL for pair-programming
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab-3-safety-systems/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 3 Applying safety systems">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 3 Applying safety systems
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.footer", "content.code.copy", "navigation.tabs.sticky", "content.tabs.link"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../js/custom-nav.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
