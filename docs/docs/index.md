@@ -16,10 +16,11 @@ Unlike traditional applications, where developers define the logic and workflows
 
 ## What is different about security for AI?
 
-AI presents a variety of novel threats, in addition to inheriting most if not all traditional security risks. The fill AI architecture stack presents new attack surfaces as well as unlocks new techniques for cyber attackers. See ![Top Threats](/docs/top-threats.md) for an overview of the most common AI threats. It is also important to recognise that strong cyber security practices across both AI and traditional software/hardware is more critical than ever because cyber attackers are also using AI to power their attack chains (increased speed & scale, more dynamic, hyper targeted & personalized).
+AI presents a variety of novel threats, in addition to inheriting most if not all traditional security risks. The fill AI architecture stack presents new attack surfaces as well as unlocks new techniques for cyber attackers. See [Top AI Threats](top-threats.md) for an overview of the most common AI threats. It is also important to recognise that strong cyber security practices across both AI and traditional software/hardware is more critical than ever because cyber attackers are also using AI to power their attack chains (increased speed & scale, more dynamic, hyper targeted & personalized).
 
 ## What is AI safety?
 
 AI safety is the engineering and design practice of ensuring that you have considered what could go wrong with your AI system and you have plans in place. It involves evaluating your solution, defining the unique ways that AI can fail, understanding the human impacts of those failures, and designing safety controls into all layers of the stack. The goal of this is to alleviate potential harm, ensure you are prepared to respond when failures (inevitably occur), and are able to earn appropriate trust in the solution. <a href="https://www.microsoft.com/en-us/security/blog/2025/05/29/how-to-deploy-ai-safely/?msockid=09303f5212946e3303a12d0c13536fd6">Learn more about deploying AI safely</a>
+
 
 
