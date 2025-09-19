@@ -2,44 +2,24 @@
 
 ## A 120-minute learning session and interactive workshop
 
-Imagine you are an AI builder. You need to analyze sales data to find trends, understand customer preferences, and make informed business decisions. To help you, Contoso has developed a conversational agent that can answer questions about your sales data.
+Imagine you are an AI tool builder for a global shoe company. You are working to build tools that help teams to be more effective, alleviate common problems that impact their productivity, and automates tedius tasks so they can spend more time on the types of work they enjoy. After working with the teams to understand the source of their top areas of frustration and ideas for opportunities to ehance how they do their work, you identify a need for a conversational agent that can help the product teams in their brainstorming and design work. 
 
-![Contoso Sales Analysis Agent](media/persona.png)
+![Contoso running shoes](media/designers.png)
 
 ## What is an LLM-Powered AI Agent?
 
 A Large Language Model (LLM) powered AI Agent is semi-autonomous software designed to achieve a given goal without requiring predefined steps or processes. Instead of following explicitly programmed instructions, the agent determines how to accomplish a task using instructions and context.
 
-For example, if a user asks, "**Show the total sales by region as a pie chart**", the app doesn't rely on predefined logic for this request. Instead, the LLM interprets the request, manages the conversation flow and context, and orchestrates the necessary actions to produce the regional sales pie chart.
+For example, if a user asks, "**what were the design characteristics of 1970s style running shoes**", the app doesn't rely on predefined logic for this request. Instead, the LLM interprets the request, manages the conversation flow and context, and orchestrates the necessary actions to produce a summary of the design elements that were common for that era.
 
-Unlike traditional applications, where developers define the logic and workflows to support business processes, AI Agents shift this responsibility to the LLM. In these systems, prompt engineering, clear instructions, and tool development are critical to ensuring the app performs as intended.
+Unlike traditional applications, where developers define the logic and workflows to support business processes, AI agents rely on the LLM. In these systems, prompt engineering, clear instructions, and tool development are critical to ensuring the app performs as intended.
 
-## Introduction to the Azure AI Foundry
+## What is different about security for AI?
 
-[Azure AI Foundry](https://azure.microsoft.com/products/ai-foundry/){:target="_blank"} is Microsoft’s secure, flexible platform for designing, customizing, and managing AI apps and agents. Everything—models, agents, tools, and observability—lives behind a single portal, SDK, and REST endpoint, so you can ship to cloud or edge with governance and cost controls in place from day one.
+AI presents a variety of novel threats, in addition to inheriting most if not all traditional security risks. The fill AI architecture stack presents new attack surfaces as well as unlocks new techniques for cyber attackers. See ![Top Threats](/docs/top-threats.md) for an overview of the most common AI threats. It is also important to recognise that strong cyber security practices across both AI and traditional software/hardware is more critical than ever because cyber attackers are also using AI to power their attack chains (increased speed & scale, more dynamic, hyper targeted & personalized).
 
-![Azure AI Foundrt Architecture](media/azure-ai-foundry.png)
+## What is AI safety?
 
-## What is the Foundry Agent Service?
+AI safety is the engineering and design practice of ensuring that you have considered what could go wrong with your AI system and you have plans in place. It involves evaluating your solution, defining the unique ways that AI can fail, understanding the human impacts of those failures, and designing safety controls into all layers of the stack. The goal of this is to alleviate potential harm, ensure you are prepared to respond when failures (inevitably occur), and are able to earn appropriate trust in the solution. <a href="https://www.microsoft.com/en-us/security/blog/2025/05/29/how-to-deploy-ai-safely/?msockid=09303f5212946e3303a12d0c13536fd6">Learn more about deploying AI safely</a>
 
-The Foundry Agent Service offers a fully managed cloud service with SDKs for [Python](https://learn.microsoft.com/azure/ai-services/agents/quickstart?pivots=programming-language-python-azure){:target="_blank"}, [C#](https://learn.microsoft.com/azure/ai-services/agents/quickstart?pivots=programming-language-csharp){:target="_blank"}, and [TypeScript](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/quickstart?pivots=programming-language-typescript){:target="_blank"}. It simplifies AI agent development, reducing complex tasks like function calling to just a few lines of code.
-
-!!! info
-    Function calling allows you to connect LLMs to external tools and systems. This is useful for many things such as empowering AI agents with capabilities, or building deep integrations between your applications and LLMs.
-
-The Foundry Agent Service offers several advantages over traditional agent platforms:
-
-- **Rapid Deployment**: Optimized SDK for fast deployment, letting developers focus on building agents.
-- **Scalability**: Designed to handle varying user loads without performance issues.
-- **Custom Integrations**: Supports Function Calling for extending agent capabilities.
-- **Built-in Tools**: Includes Fabric, SharePoint, Azure AI Search, and Azure Storage for quick development.
-- **RAG-Style Search**: Features a built-in vector store for efficient file and semantic search.
-- **Conversation State Management**: Maintains context across multiple interactions.
-- **AI Model Compatibility**: Works with various AI models.
-
-Learn more about the Foundry Agent Service in the [Foundry Agent Service documentation](https://learn.microsoft.com/azure/ai-services/agents/overview){:target="_blank"}.
-
-## AI Agent Frameworks
-
-Popular agent frameworks include LangChain, Semantic Kernel, and CrewAI. What distinguishes the Foundry Agent Service is its seamless integration capabilities and an SDK optimized for rapid deployment. In complex multi-agent scenarios, solutions will combine SDKs like Semantic Kernel and AutoGen with the Foundry Agent Service to build robust and scalable systems.
 
