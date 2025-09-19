@@ -1,25 +1,33 @@
-# Meet the content transformer agent
+# Meet the SparkMate agent
 
-In this lab, you will be using a sample agent called **Content Transformer** to practice building security and safety controls. The base of the agent has been created for you. Security and safety is highly contextual, so start by familiarizing yourself with agent scenario information outined below. It will be important to have a good understanding for the activities going forward so you can define the likely threats and types of behaviors that would be deemed unacceptable. 
+In this lab, you will be using a sample agent called **SparkMate** to practice building security and safety controls. The base of the agent has been created for you. Security and safety is highly contextual, so start by familiarizing yourself with agent scenario information outined below. It will be important to have a good understanding for the activities going forward so you can define the likely threats and types of behaviors that would be deemed unacceptable. 
 
-## Agent scenario
+<br>
 
-### Context
-Contoso is global company, focused on building innovative products for professional sports teams. They are organized by divisions and within each division there are a set of feature teams with a Product Manager (feature owner), designers, fabricators, and materials specialists all focused on building and delivering products for their users.
+# Agent scenario
 
- The product manager's primary responsibility is identifying opportunities for new products/improvements on existing products, building the strategy, and documenting the product requirements so that the rest of the feature team is clear on what is needed.
+## Context
+Contoso is a global company focused on building innovative products for professional sports teams. Each division is made up of feature teams that include a Product Manager, designers, engineers, and specialists—all working together to deliver high-impact solutions.
+The Product Manager leads the charge in identifying new opportunities, shaping product strategy, and guiding the team through the product development lifecycle. Ideation is a critical part of this process, and live workshops are often used to bring diverse perspectives together.
 
-### User problem(s)
-- Product managers prefer to spend most of their time on defining and building features with the rest of the team, however they also are frequently asked to provide executive updates and customer-ready product pitches, which requires them to take time away from the building process to transform existing content for different audiences.
+<br>
 
-- Executives need to be able to stay up to date on the products that are being developed without having to coomb through the detailed tactical documentation from the feature team. They need information that is concise and easy to understand.
+## User Problem(s)
 
-- Customers want to be able to understand what new products are being developed so that they can decide if they will be potentially useful for their organization. They want to understand what the product is, what it is for, how it will work, and when it might be available, but they do not need to know about the internal operational details of product creation.
+Teams often struggle to maintain momentum and structure during live brainstorming sessions, leading to missed opportunities and underdeveloped ideas.
+Product Managers want to encourage creative thinking but also need to ensure ideas are aligned with business goals and user needs.
+Participants sometimes feel unsure about how to contribute or how to build on others’ ideas effectively.
+There’s a need for a consistent way to capture, clarify, and enhance ideas in real time, without slowing down the flow of the workshop.
 
-### The solution
-The product managers within Contoso want an agent that can automate the time-consuming and detailed work that is required to reshape their product specification documentation and operational tracking content into executive & customer-ready presentations. The Content Transformer agent was built to ingest a user defined document (e.g. Microsoft Word) and transform it into another format (e.g. MSFT PowerPoint) based upon the user request. It not only migrates the content, but summarizes, structures, and augments it based upon the destination file type and appropriate cotent flow for the presentation goals.
+<br>
 
-The agent can transform content bi-directionally between a variety of formts: document, spreadsheet, or presentation. It can create images, design layouts, transform structured data in tables into charts/visualizations. 
+## The Solution
+The Brainstorming Collaborator Agent was designed to support live ideation workshops by guiding teams through structured creative exercises, asking thoughtful questions, and offering inspiring suggestions. It helps teams:
 
+- Generate a wide range of ideas quickly
+- Clarify and refine promising concepts
+- Encourage inclusive participation
+- Keep the session focused and productive
 
-[xxxximage - content transformer agent illustration xxxx]
+The agent can adapt to different workshop formats (in-person, remote, hybrid) and supports various ideation techniques like “How Might We” prompts, reverse brainstorming, and idea clustering. It also helps organize outputs for post-session review and prioritization.
+
