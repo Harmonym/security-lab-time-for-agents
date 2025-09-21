@@ -73,7 +73,7 @@ It is best practice to always test changes or controls you introduce to the syst
 
 1. Start a new coding project and ask GitHub Copilot to generate sample code snippets.
 
-![GitHub instructions reference](media/github-custom-isntructions-vscode.webp)
+![GitHub instructions](media/github-custom-instructions-vscode.jpg)
  
 3. Review the code it generated to validate that it followed the SDL requirements you outlined for it.
 
@@ -91,6 +91,7 @@ Reflect on the following to help you define what security actions are important 
 
 
 With that set up, we will start **building** our agent!
+
 
 
 
