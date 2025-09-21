@@ -4,6 +4,8 @@ The next important layer of protection for agents is post-deplyomet **Monitoring
 
 If you already have a traditional security monitoring tool in place for your environment, you should explore if it has AI-specific capabilities that are tailored to detecting indicators that your AI system or agent is being attacked. One option is Microsoft Defender for Cloud alerts for AI services. <a href="https://learn.microsoft.com/en-us/azure/defender-for-cloud/alerts-ai-workloads" target="_blank" rel="noopener noreferrer">Learn more about the types of alerts offered</a>
 
+![Microsoft Defender for Cloud alerting](media/defender-for-cloud.png)
+
 Microsoft Defender for Cloud also has capabilities to  detect AI applications within an environment, which can help with challenges around Shadow IT as employees and teams experiment with emerging AI technologies. 
 
 <br>
@@ -34,4 +36,5 @@ Reflect on the following to help you define what security & safety actions are i
 
 
 Now that you have run adversarial tests to validate that the safety & security controls are working, we'll talk about **Human in the Loop**!
+
 

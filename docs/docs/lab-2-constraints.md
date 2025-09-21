@@ -246,6 +246,10 @@ Once you are happy with the system message, you can move on the steps for settin
 
 5. "Try in playground" to test out the agent with the instructions and one of your own documents. **Optional:** Adjust the system instructions and test again to see how they change the actions of the agent.
 
+![Example prompt](media/Agent-playground.png)
+
+![Example output](media/agent-playground2.png)
+
 <br>
 
 ## How to extend this to your own work
@@ -257,6 +261,7 @@ Reflect on the following to help you define what security actions are important 
 - What types of attackers would you envision wanting to target your system? What would they be hoping to achieve or access?
 
 Now that we have the system instructions set, let's add some layers of **safety tooling**.
+
 
 
 

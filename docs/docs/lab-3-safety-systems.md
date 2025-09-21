@@ -14,6 +14,8 @@ For this lab we will focus on configuring filters to detect injection attack att
 
 ### Create content filter
 
+![Create a filter](media/filters-list.png)
+
 1. You should already have your initial agent configured in Azure AI Foundry (Lab 2).
 2.  Click "Guardrails + controls" in the left navigation. 
 3. "Create content filter". You'll need to give it a name (for example "lab-agent-filter").
@@ -21,12 +23,18 @@ For this lab we will focus on configuring filters to detect injection attack att
 <br>
 
 ### Configure content filter: inputs
+
 4. Configure input filter
+
+![Input filter options](media/filter-configuration.png)
+
   - *Optional* You can adjust the "blocking threshold level" if you want to experiment with how it works. This determines the sensitivity for each category. The higher the blocking you select, the more sensitive it will be to input content that it labels as potentially harmful. *Note:* these are probabalistic classifiers, so they assign a score of the likelihood that content contains objectionable content. Higher sensitivity means that it will flag content that has a lower likelihood score.
   - Make sure the "prompt shields for jailbreak attacks" is set to **annotate and block**. This will flag prompts that it detects as potentially including direct prompt injection from the user, terminate processing, and notify the user that it cannot proceed.
   - Set the "prompt shields for indirect attacks" to **annotate and block**. This will flag inputs that it detects as potentially including indirect prompt injection (XPIA), terminate processing of that prompt, and notify the user that it cannot proceed.
-  - We will not focus on "blockist" for this lab, but you may want to experiment with it for your own scenarios in the future.
+  - We will not focus on "blockist" for this lab, but you may want to experiment with it for your own scenarios in the future.  
   - Set "spotlighting" to **enable**.
+
+![Spotlighting control](media/filter-configuration-2.png)
 
 <br>
 
@@ -38,6 +46,8 @@ For this lab we will focus on configuring filters to detect injection attack att
   - "Streaming mode" should be set to **default**.
 
 6. Connect the filter to your **model deployment**. You will have created a model deployment during Lab 2 as part of creating your agent.
+
+![Filter to deployment connection](media/filter-to-deployment.png)
 
 7. Complete filter creation.
 
@@ -63,5 +73,6 @@ Reflect on the following to help you define which security & safety actions are 
 - How do you want indirect prompt injections to be handled when they are detected? 
 
 Now that you have implemented your security & safety configurations for your agent, it's time for **adversarial testing**!
+
 
 
