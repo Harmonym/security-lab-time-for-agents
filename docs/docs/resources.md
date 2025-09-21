@@ -49,10 +49,15 @@ The workshop repository on GitHub contains everything needed for the workshop. T
 * <a href="https://learn.microsoft.com/en-us/ai/playbook/technology-guidance/overreliance-on-ai/overreliance-on-ai" target="_blank" rel="noopener noreferrer">Overreliance framework</a> for interaction design
 
 
+## Learn to build an agent using Azure AI Agent Service 
+* If you want practice building an agent, try this self-service lab <a href="https://github.com/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop"> Build your first agent </a>
+
+
 
 ## Thank you
 
 Thank you for participating in this workshop! If you have any suggestions for improvements or encountered any problems while running this workshop, please let us know via <a href="https://github.com/Harmonym/lab-time-for-agents/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>
+
 
 
 
