@@ -17,30 +17,24 @@ By the end of this workshop, you will be able to:
 
 ### Lab 1: SDL-Oriented Instructions _(05 min)_
 Implement Security Development Lifecycle principles in your agent’s instructions.
-- **Location**: [`docs/lab-01-sdl-instructions/`](docs/lab-01-sdl-instructions/)
 
 ### Lab 2: Behavior Constraints _(15 min)_
 Build system messages to define agent boundaries.
-- **Location**: [`labs/02-constraints/`](labs/02-constraints/)
 
 ### Lab 3: Microsoft Safety System Tools _(15 min)_
 Integrate Prompt Shield, Spotlighting, and Task Adherence.
-- **Location**: [`labs/03-safety-systems/`](labs/03-safety-systems/)
 
 ### Lab 4: Red Team Testing _(15 min)_
 Test your agent’s security using adversarial techniques.
-- **Location**: [`labs/04-testing/`](labs/04-testing/)
 
 ### Lab 5: Logging & Monitoring _(15 min)_
 Implement logging and basic monitoring for your agents.
-- **Location**: [`labs/05-logging/`](labs/05-logging/)
 
 ### Lab 6: Minotiring & Alerting _(15 min)_
 Implement logging and basic monitoring for your agents.
-- **Location**: [`labs/06-monitoring-alerting/`](labs/06-monitoring-alerting/)
 
 > _Optional Extension: Human-in-the-loop (HITL) Design_(15 min)_
-> - See [`labs/07-hitl/`](labs/07-hitl/) for further exploration after the workshop.
+
 
 ## 🚀 Quick Start
 
