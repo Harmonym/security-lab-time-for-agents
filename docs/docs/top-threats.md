@@ -1,6 +1,8 @@
-## Top AI threats
+## AI security threats
 
-The threat landscape for AI is as dynamic as the 
+GenerativeAI technology introduces a variety of novel threats that require new and innovative approaches for protecting your environment. Traditional potential attacks to data, software, hardware, & networks still need to be addressed, but now you also need to think about protecting inputs, plugins, memory, agents, model context protocol (MCP), and outputs.
+
+![Contoso running shoes](media/designers.png)
 
 ### Using a pair-programmer or AI assistance for your development work
 
