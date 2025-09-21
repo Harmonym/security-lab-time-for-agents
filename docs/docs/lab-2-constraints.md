@@ -218,6 +218,8 @@ Once you are happy with the system message, you can move on the steps for settin
 
 1. Open Azure AI Foundry <a href="https://ai.azure.com/" target="_blank" rel="noopener noreferrer">https://ai.azure.com/</a>
 
+![Create agent flow](media/Agent-pane.png)
+
 2. Click on "Agents" in the left navigation.
 
 3. "Create new". You will be prompted to first select a model type.
@@ -225,15 +227,13 @@ Once you are happy with the system message, you can move on the steps for settin
    ### Requirements & pre-requisites
    You will need:
    - An Azure Subscription and Resource Group
-
-
    - To name your deployment. For this lab, you can call it "agentlabdeploy"
    - Deployment type, select "Standard"
    - Connected
-     
+
   
   ### Recommended configurations
-  - set the agent name to **devdayssecuritylab** or similar
+  - set the agent name to **SparkMate** or similar
   - for model, select **GPT4o**
   - set the deployement name to **devdaydeploy** or similar
   - under "Deployment details" you can keep all settings that the default configuration. Verify that "connected AI resource" is set to your Azure AI Foundry "project" resource
@@ -257,6 +257,7 @@ Reflect on the following to help you define what security actions are important 
 - What types of attackers would you envision wanting to target your system? What would they be hoping to achieve or access?
 
 Now that we have the system instructions set, let's add some layers of **safety tooling**.
+
 
 
 
