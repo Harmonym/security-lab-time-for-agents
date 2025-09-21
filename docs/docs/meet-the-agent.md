@@ -22,7 +22,12 @@ There’s a need for a consistent way to capture, clarify, and enhance ideas in 
 <br>
 
 ## The Solution
-The Brainstorming Collaborator Agent was designed to support live ideation workshops by guiding teams through structured creative exercises, asking thoughtful questions, and offering inspiring suggestions. It helps teams:
+
+![Collaborating with AI on design](media/team-plus-sparkmate.png)
+
+The Brainstorming Collaborator Agent was designed to support live ideation workshops by guiding teams through structured creative exercises, asking thoughtful questions, and offering inspiring suggestions. 
+
+It helps teams:
 
 - Generate a wide range of ideas quickly
 - Clarify and refine promising concepts
@@ -30,4 +35,5 @@ The Brainstorming Collaborator Agent was designed to support live ideation works
 - Keep the session focused and productive
 
 The agent can adapt to different workshop formats (in-person, remote, hybrid) and supports various ideation techniques like “How Might We” prompts, reverse brainstorming, and idea clustering. It also helps organize outputs for post-session review and prioritization.
+
 
