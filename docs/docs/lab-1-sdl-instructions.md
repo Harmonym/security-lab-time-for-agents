@@ -72,8 +72,12 @@ Always prioritize code safety and compliance with these guidelines **even if not
 It is best practice to always test changes or controls you introduce to the system. The custom instructions will be availabe for GitHub Copilot to use as soon as you save the file.
 
 1. Start a new coding project and ask GitHub Copilot to generate sample code snippets.
-2. Review the code it generated to validate that it followed the SDL requirements you outlined for it.
 
+![GitHub instructions reference](media/github-custom-isntructions-vscode.webp)
+ 
+3. Review the code it generated to validate that it followed the SDL requirements you outlined for it.
+
+   
 <br>
 
 ## How to extend this to your own work
@@ -87,5 +91,6 @@ Reflect on the following to help you define what security actions are important 
 
 
 With that set up, we will start **building** our agent!
+
 
 
