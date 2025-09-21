@@ -17,11 +17,11 @@ By the end of this workshop, you will be able to:
 
 ### Lab 1: SDL-Oriented Instructions _(05 min)_
 Implement Security Development Lifecycle principles in your agent’s instructions.
-- **Location**: [`docs/lab-01-sdl-instructions/`](docs/lab-01-sdl-instructions/)
+- **Location**: [`docs/docs/lab-01-sdl-instructions/`](docs/docs/lab-01-sdl-instructions/)
 
 ### Lab 2: Behavior Constraints _(15 min)_
 Build system messages to define agent boundaries.
-- **Location**: [`labs/02-constraints/`](labs/02-constraints/)
+- **Location**: [`docs/docs/lab-02-constraints/`](docs/docs/lab-02-constraints/)
 
 ### Lab 3: Microsoft Safety System Tools _(15 min)_
 Integrate Prompt Shield, Spotlighting, and Task Adherence.
