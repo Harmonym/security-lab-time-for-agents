@@ -4,7 +4,7 @@ That's all for the lab portion of this workshop. Read on for key takeaways and a
 
 If you have a GitHub account, you can "star" this repository to make it easy for you to find again in the future.
 
-* Visit the GitHub repository at: [microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop](https://github.com/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop){:target="_blank"}
+* Visit the GitHub repository at: [xxxxxxx]
 * Log into your GitHub account
 * Click **Star** in the top right
 
@@ -44,3 +44,4 @@ Most of the resources you created in this lab are pay-as-you-go resources, meani
 * In the field at the bottom "Enter resource group name to confirm deletion" enter `rg-your named resource group-****`
 * Click **Delete**
   * At the Delete Confirmation prompt, click "Delete"
+
