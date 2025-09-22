@@ -21,33 +21,33 @@ By the end of this workshop, you will be able to:
 
 1. **Introduction** _(05 min)_
 
-2. **Today's AI threat landscape** _(10 min)_
+3. **Today's AI threat landscape** _(10 min)_
 
-3. **Example agent** _(05 min)_
+4. **Example agent** _(05 min)_
 
-4. **System architecture** _(05 min)_
+5. **System architecture** _(05 min)_
 
-5. **Lab 1** SDL-Oriented Instructions _(05 min)_
+6. **Lab 1** SDL-Oriented Instructions _(05 min)_
 Implement Security Development Lifecycle principles in your agent’s instructions.
 
-6. **Lab 2**: Behavior Constraints _(15 min)_
+7. **Lab 2**: Behavior Constraints _(15 min)_
 Build system messages to define agent boundaries.
 
-7. **Lab 3**: Microsoft Safety System Tools _(15 min)_
+8. **Lab 3**: Microsoft Safety System Tools _(15 min)_
 Integrate Prompt Shield, Spotlighting, and Task Adherence.
 
-8. **Lab 4**: Red Team Testing _(15 min)_
+9. **Lab 4**: Red Team Testing _(15 min)_
 Test your agent’s security using adversarial techniques.
 
-9. **Lab 5**: Logging & Monitoring _(15 min)_
+10. **Lab 5**: Logging & Monitoring _(15 min)_
 Implement logging and basic monitoring for your agents.
 
-10. **Lab 6**: Monitoring & Alerting _(15 min)_
+11. **Lab 6**: Monitoring & Alerting _(15 min)_
 Implement logging and basic monitoring for your agents.
 
-11. _Optional Extension: **Lab 7** Human-in-the-loop (HITL) Design_(15 min)_
+12. _Optional Extension: **Lab 7** Human-in-the-loop (HITL) Design_(15 min)_
 
-12. **Recap and close-out** _(05 min)_
+13. **Recap and close-out** _(05 min)_
 
 
 ## 🚀 Quick Start
@@ -79,9 +79,14 @@ Implement logging and basic monitoring for your agents.
 
 ## 🤝 Contributing
 
-Please see our [contributing guidelines](CONTRIBUTING.md) for information on how to contribute to this project.
+Please see our [contributing guidelines](CONTRIBUTING) for information on how to contribute to this project.
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-````
+
+## 📄 Trademark
+
+Trademarks This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow Microsoft’s Trademark & Brand Guidelines. Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship. Any use of third-party trademarks or logos are subject to those third-party’s policies.
+
+
