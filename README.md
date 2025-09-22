@@ -27,7 +27,7 @@ By the end of this workshop, you will be able to:
 
 5. **System architecture** _(05 min)_
 
-6. **Lab 1** SDL-Oriented Instructions _(05 min)_
+6. **Lab 1**: SDL-Oriented Instructions _(05 min)_
 Implement Security Development Lifecycle principles in your agent’s instructions.
 
 7. **Lab 2**: Behavior Constraints _(15 min)_
