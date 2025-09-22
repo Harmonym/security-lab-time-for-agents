@@ -2,6 +2,10 @@
 
 A hands-on, interactive 2-hour workshop for AI builders to implement essential safety and security techniques into custom agents. This workshop covers core security practices, Microsoft Safety System tools, and practical agent defense tactics.
 
+## Who Is This For?
+
+Anyone interested in building safet and secure agents. This includes developers, product managers, data scientists, vibe coders, and AI enthusiasts. No prior experience with Foundry Agent Service or is required.
+
 ## 🎯 Learning Objectives
 
 By the end of this workshop, you will be able to:
