@@ -19,35 +19,35 @@ By the end of this workshop, you will be able to:
 
 ## 📚 Workshop Structure
 
-### Introduction _(05 min)_
+1. **Introduction** _(05 min)_
 
-### Today's AI threat landscape _(10 min)_
+2. **Today's AI threat landscape** _(10 min)_
 
-### Example agent _(05 min)_
+3. **Example agent** _(05 min)_
 
-### System architecture _(05 min)_
+4. **System architecture** _(05 min)_
 
-### Lab 1: SDL-Oriented Instructions _(05 min)_
+5. **Lab 1** SDL-Oriented Instructions _(05 min)_
 Implement Security Development Lifecycle principles in your agent’s instructions.
 
-### Lab 2: Behavior Constraints _(15 min)_
+6. **Lab 2**: Behavior Constraints _(15 min)_
 Build system messages to define agent boundaries.
 
-### Lab 3: Microsoft Safety System Tools _(15 min)_
+7. **Lab 3**: Microsoft Safety System Tools _(15 min)_
 Integrate Prompt Shield, Spotlighting, and Task Adherence.
 
-### Lab 4: Red Team Testing _(15 min)_
+8. **Lab 4**: Red Team Testing _(15 min)_
 Test your agent’s security using adversarial techniques.
 
-### Lab 5: Logging & Monitoring _(15 min)_
+9. **Lab 5**: Logging & Monitoring _(15 min)_
 Implement logging and basic monitoring for your agents.
 
-### Lab 6: Minotiring & Alerting _(15 min)_
+10. **Lab 6**: Monitoring & Alerting _(15 min)_
 Implement logging and basic monitoring for your agents.
 
-> _Optional Extension: Human-in-the-loop (HITL) Design_(15 min)_
+11. _Optional Extension: **Lab 7** Human-in-the-loop (HITL) Design_(15 min)_
 
-### Recap and close-out _(05 min)_
+12. **Recap and close-out** _(05 min)_
 
 
 ## 🚀 Quick Start
