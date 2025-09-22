@@ -2,6 +2,9 @@
 
 Congratulations for completing the lab! The goal of this workshop was to give you a chance to learn and practice how to build layered security & safety controls for agents. You should now be able to start experimenting with industry best practice techniques and tools on your own agent projects.
 
+## AI threats overview
+You learned about the top novel threats for AI: what they are, how they work, and examples. This was foundational understanding for the protections that you implemented throughout the lab.
+
 ## Lab Index
 
 - **Lab 1: SDL Instructions**  
@@ -39,4 +42,5 @@ If you have a GitHub account, you can "star" this repository to make it easy for
 - Click Star in the top right
   
 To find this workshop again in the future, click your GitHub profile picture in the top-right and click Your stars.
+
 
