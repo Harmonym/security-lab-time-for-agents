@@ -19,6 +19,14 @@ By the end of this workshop, you will be able to:
 
 ## 📚 Workshop Structure
 
+### Introduction _(05 min)_
+
+### Today's AI threat landscape _(10 min)_
+
+### Example agent _(05 min)_
+
+### System architecture _(05 min)_
+
 ### Lab 1: SDL-Oriented Instructions _(05 min)_
 Implement Security Development Lifecycle principles in your agent’s instructions.
 
@@ -38,6 +46,8 @@ Implement logging and basic monitoring for your agents.
 Implement logging and basic monitoring for your agents.
 
 > _Optional Extension: Human-in-the-loop (HITL) Design_(15 min)_
+
+### Recap and close-out _(05 min)_
 
 
 ## 🚀 Quick Start
