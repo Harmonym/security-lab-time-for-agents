@@ -22,6 +22,8 @@ While the AI threat environment is as dynamic as the generativeAI technology lan
 - Inappropriate reliance
 - Psychological impacts
 
+Additional threat model: <a href="https://genai.owasp.org/llm-top-10/">OWASP Top LLM Threats report</a>
+<a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/Taxonomy-of-Failure-Mode-in-Agentic-AI-Systems-Whitepaper.pdf" target="_blank" rel="noopener noreferfer">Taxonony of novel AI failures</a>
 <br>
 
 ### Cross domain prompt injection (XPIA)
