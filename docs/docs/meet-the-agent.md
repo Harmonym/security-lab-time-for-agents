@@ -36,4 +36,11 @@ It helps teams:
 
 The agent can adapt to different workshop formats (in-person, remote, hybrid) and supports various ideation techniques like “How Might We” prompts, reverse brainstorming, and idea clustering. It also helps organize outputs for post-session review and prioritization.
 
+## Questions to consider
+
+- what are the user types you would envision interacting with and being effectved by this agent?
+- what goals would you envision for this agentic system
+- what information, access, and resources would it need to be effective?
+
+
 
