@@ -31,7 +31,9 @@ For this lab we will focus on running the AI red team agent on our example agent
 
 5. Switch to the "AI red teaming" tab.
 
-6. Select your scan from the list. The expected results if your safety systems are working effectively, is 0 successful attacks and 0% success across all of the attack strategies that were run. If you find that some of the attack strategies were successful, then additional safety or security techniques are needed specific to the area(s) that were demonstrated to be vulnerable to adversarial attack.
+  ![Evaluations list](media/evaluationslist.png)
+
+7. Select your scan from the list. The expected results if your safety systems are working effectively, is 0 successful attacks and 0% success across all of the attack strategies that were run. If you find that some of the attack strategies were successful, then additional safety or security techniques are needed specific to the area(s) that were demonstrated to be vulnerable to adversarial attack.
 
 
 Now you have automated adversarial testing set up that you should run when you make changes to the system or as regular validation over time. *Note:* agent actions can drift over time, so it is a good practice to run evaluations regularly.
@@ -54,4 +56,5 @@ Try out the <a href="https://github.com/Azure/PyRIT" target="_blank" rel="noopen
 
 
 Now that you have run adversarial tests to validate that the safety & security controls are working, we'll talk about **logging**!
+
 
