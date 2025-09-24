@@ -10,28 +10,7 @@ If you have a GitHub account, you can "star" this repository to make it easy for
 
 To find this workshop again in the future, click your GitHub profile picture in the top-right and click **Your stars**.
 
-## Clean up GitHub CodeSpaces
-
-### Save your changes in GitHub 
-
-You can save any changes you have made to files during the workshop to your personal GitHub repository as a fork. This makes it easy to re-run the workshop with your customizations, and the workshop content will always remain available in your GitHub account.
-
-* In VS Code, click the "Source Control" tool in the left pane. It's the third one down, or you can use the keyboard shortcut <kbd>Control-Shift-G</kbd>.
-* In the field under "Source Control" enter `your named codespace` and click **✔️Commit**.
-  * Click **Yes** to the prompt "There are no staged changes to commit."
-* Click **Sync Changes**.
-  * Click **OK** to the prompt "This action will pull and push commits from and to origin/main".
-
-You now have your own copy of the workshop with your customizations in your GitHub account.
-
-### Delete your GitHub codespace
-
-Your GitHub CodeSpace will shut down by itself, but it will consume a small amount of your compute and storage allotment until it is deleted. (You can see your usage in your <a href="https://github.com/settings/billing/summary">GitHub Billing summary</a>. You can safely delete the codespace now, as follows:
-
-* Visit <a href="https://github.com/codespaces">github.com/codespaces</a>
-* At the bottom of the page, click the "..." menu to the right of your active codespace
-* Click **Delete**
-  * At the "Are you sure?" prompt, click **Delete**.
+<br>
 
 ## Delete your Azure resources
 
@@ -44,3 +23,4 @@ Most of the resources you created in this lab are pay-as-you-go resources, meani
 * In the field at the bottom "Enter resource group name to confirm deletion" enter `rg-your named resource group-****`
 * Click **Delete**
   * At the Delete Confirmation prompt, click "Delete"
+
