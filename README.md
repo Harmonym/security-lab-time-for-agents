@@ -1,6 +1,8 @@
 # Build-an-Agent Labs: Safety & Security Workshop
 
 A hands-on, interactive 2-hour workshop for AI builders to implement essential safety and security techniques into custom agents. This workshop covers core security practices, Microsoft Safety System tools, and practical agent defense tactics.
+https://aka.ms/agentsecuritylab/
+
 
 ## Who Is This For?
 
