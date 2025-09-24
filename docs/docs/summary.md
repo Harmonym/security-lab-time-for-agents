@@ -37,10 +37,11 @@ Just as generativeAI is a rapidly evolving technology space, so too are the thre
 # Star the GitHub Repository
 If you have a GitHub account, you can "star" this repository to make it easy for you to find again in the future.
 
-- Visit the GitHub repository at: [VVVVVVVVV}
+- Visit the GitHub repository at: https://aka.ms/agentsecuritylab/
 - Log into your GitHub account
 - Click Star in the top right
   
 To find this workshop again in the future, click your GitHub profile picture in the top-right and click Your stars.
+
 
 
