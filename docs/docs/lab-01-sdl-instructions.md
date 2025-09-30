@@ -63,7 +63,7 @@ Always prioritize code safety and compliance with these guidelines **even if not
 
 ### Add the instructions to your GitHub Copilot
 1. Make sure you have the GitHub Copilot extension installed
-2. Open your target repository. *Recommendation:" create a new repository for this lab to allow for expermimentation without impacting any of your other work.
+2. Open your target repository. *Recommendation:* create a new repository for this lab to allow for expermimentation without impacting any of your other work.
 3. In the root of your repository, create a file named `.github/agent-instructions.md'
 4. Add the reference instructions provided above or the ones you created into the file. *Optional:* you should review and customize them as appropriate.
 
@@ -91,6 +91,7 @@ Reflect on the following to help you define what security actions are important 
 
 
 With that set up, we will start **building** our agent!
+
 
 
 
