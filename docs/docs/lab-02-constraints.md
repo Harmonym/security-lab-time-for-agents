@@ -16,7 +16,7 @@ A system message is a key tool you can use to define the purpose of your agent, 
 <a href="https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/safety-system-message-templates" target="_blank" rel="noopener noreferrer">Reference templates for safety system instructions</a>
 <br> <br>
 
-### Content transformer agent system messages (so far)
+### Brainstorming helper agent system messages (so far)
 To facilitate this exercise, we have pre-crafted the initial system message for our sample agent. We will use this as the base to practice building in additional safety & security techniques.
 
 ```markdown
@@ -261,6 +261,7 @@ Reflect on the following to help you define what security actions are important 
 - What types of attackers would you envision wanting to target your system? What would they be hoping to achieve or access?
 
 Now that we have the system instructions set, let's add some layers of **safety tooling**.
+
 
 
 
