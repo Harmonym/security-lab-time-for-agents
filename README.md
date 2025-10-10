@@ -41,7 +41,7 @@ Integrate Prompt Shield, Spotlighting, and Task Adherence.
 9. **Lab 4**: Red Team Testing _(15 min)_
 Test your agent’s security using adversarial techniques.
 
-10. **Lab 5**: Logging & Monitoring _(15 min)_
+10. **Lab 5**: Logging _(15 min)_
 Implement logging and basic monitoring for your agents.
 
 11. **Lab 6**: Monitoring & Alerting _(15 min)_
